@@ -34,6 +34,7 @@ setup(
     entry_points={
         'console_scripts': [
             'joystick_to_joint_publisher = siro_arm.joystick_to_joint_publisher:main',
+            'joint_to_serial = siro_arm.joint_to_serial_node:main',
         ],
     },
 )
