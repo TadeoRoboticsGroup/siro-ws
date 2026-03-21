@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+    <linearGradient id="launchGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6F00;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E65100;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="nodeGradA" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#42A5F5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1565C0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="nodeGradB" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#66BB6A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E7D32;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="nodeGradC" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#AB47BC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6A1B9A;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrowL" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FFD54F"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="380" rx="15" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="350" y="38" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold">Launch Files</text>
+  <text x="350" y="58" text-anchor="middle" fill="#aaaacc" font-size="12">Un solo comando para lanzar multiples nodos con configuracion</text>
+
+  <!-- Launch file box -->
+  <rect x="220" y="80" width="260" height="80" rx="12" fill="url(#launchGrad)" filter="url(#shadow)"/>
+  <text x="350" y="108" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">mi_launch.py</text>
+  <text x="350" y="128" text-anchor="middle" fill="#ffe0b2" font-size="11">ros2 launch pkg mi_launch.py</text>
+  <text x="350" y="148" text-anchor="middle" fill="#ffcc80" font-size="10">LaunchDescription([ ... ])</text>
+
+  <!-- Node 1 -->
+  <rect x="40" y="220" width="170" height="80" rx="10" fill="url(#nodeGradA)" filter="url(#shadow)"/>
+  <text x="125" y="250" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">turtlesim_node</text>
+  <text x="125" y="270" text-anchor="middle" fill="#bbdefb" font-size="10">package='turtlesim'</text>
+  <text x="125" y="285" text-anchor="middle" fill="#90caf9" font-size="9">name='turtle1'</text>
+
+  <!-- Node 2 -->
+  <rect x="265" y="220" width="170" height="80" rx="10" fill="url(#nodeGradB)" filter="url(#shadow)"/>
+  <text x="350" y="250" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">teleop_key</text>
+  <text x="350" y="270" text-anchor="middle" fill="#c8e6c9" font-size="10">package='turtlesim'</text>
+  <text x="350" y="285" text-anchor="middle" fill="#a5d6a7" font-size="9">output='screen'</text>
+
+  <!-- Node 3 -->
+  <rect x="490" y="220" width="170" height="80" rx="10" fill="url(#nodeGradC)" filter="url(#shadow)"/>
+  <text x="575" y="250" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">mi_nodo</text>
+  <text x="575" y="270" text-anchor="middle" fill="#e1bee7" font-size="10">package='mi_pkg'</text>
+  <text x="575" y="285" text-anchor="middle" fill="#ce93d8" font-size="9">params=[config.yaml]</text>
+
+  <!-- Arrows from launch to nodes -->
+  <line x1="280" y1="160" x2="125" y2="215" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowL)"/>
+  <line x1="350" y1="160" x2="350" y2="215" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowL)"/>
+  <line x1="420" y1="160" x2="575" y2="215" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowL)"/>
+
+  <!-- Labels -->
+  <text x="180" y="195" text-anchor="middle" fill="#FFD54F" font-size="9">Lanza</text>
+  <text x="350" y="195" text-anchor="middle" fill="#FFD54F" font-size="9">Lanza</text>
+  <text x="520" y="195" text-anchor="middle" fill="#FFD54F" font-size="9">Lanza</text>
+
+  <!-- Footer -->
+  <rect x="100" y="330" width="500" height="35" rx="8" fill="#2d2d4e"/>
+  <text x="350" y="353" text-anchor="middle" fill="#aaaacc" font-size="11">Permite configurar parametros, remapeos, namespaces y dependencias</text>
+</svg>

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 420" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+    <linearGradient id="actClientGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF7043;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D84315;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="actServerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#5C6BC0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#283593;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrowGo" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#66BB6A"/>
+    </marker>
+    <marker id="arrowFb" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FFD54F"/>
+    </marker>
+    <marker id="arrowRs" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#42A5F5"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="750" height="420" rx="15" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="375" y="38" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold">Acciones (Actions) - Goal / Feedback / Result</text>
+  <text x="375" y="58" text-anchor="middle" fill="#aaaacc" font-size="12">Comunicacion asincrona con retroalimentacion y cancelacion</text>
+
+  <!-- Action Client -->
+  <rect x="40" y="90" width="190" height="200" rx="12" fill="url(#actClientGrad)" filter="url(#shadow)"/>
+  <text x="135" y="125" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">Action Client</text>
+  <text x="135" y="148" text-anchor="middle" fill="#ffccbc" font-size="11">teleop_turtle</text>
+  <line x1="60" y1="165" x2="210" y2="165" stroke="#ffffff44" stroke-width="1"/>
+  <text x="135" y="185" text-anchor="middle" fill="#ffccbc" font-size="10">1. Envia Goal</text>
+  <text x="135" y="205" text-anchor="middle" fill="#ffccbc" font-size="10">2. Recibe Feedback</text>
+  <text x="135" y="225" text-anchor="middle" fill="#ffccbc" font-size="10">3. Recibe Result</text>
+  <text x="135" y="250" text-anchor="middle" fill="#ffccbc" font-size="10">4. Puede cancelar</text>
+
+  <!-- Action Server -->
+  <rect x="520" y="90" width="190" height="200" rx="12" fill="url(#actServerGrad)" filter="url(#shadow)"/>
+  <text x="615" y="125" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">Action Server</text>
+  <text x="615" y="148" text-anchor="middle" fill="#c5cae9" font-size="11">turtlesim</text>
+  <line x1="540" y1="165" x2="690" y2="165" stroke="#ffffff44" stroke-width="1"/>
+  <text x="615" y="185" text-anchor="middle" fill="#c5cae9" font-size="10">1. Recibe Goal</text>
+  <text x="615" y="205" text-anchor="middle" fill="#c5cae9" font-size="10">2. Ejecuta tarea</text>
+  <text x="615" y="225" text-anchor="middle" fill="#c5cae9" font-size="10">3. Envia Feedback</text>
+  <text x="615" y="250" text-anchor="middle" fill="#c5cae9" font-size="10">4. Envia Result</text>
+
+  <!-- Goal Arrow -->
+  <line x1="230" y1="140" x2="515" y2="140" stroke="#66BB6A" stroke-width="3" marker-end="url(#arrowGo)"/>
+  <rect x="310" y="125" width="130" height="22" rx="5" fill="#1a1a2e"/>
+  <text x="375" y="141" text-anchor="middle" fill="#66BB6A" font-size="12" font-weight="bold">Goal (theta: 1.72)</text>
+
+  <!-- Feedback Arrow (multiple) -->
+  <line x1="520" y1="200" x2="235" y2="200" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowFb)" stroke-dasharray="6,3"/>
+  <line x1="520" y1="215" x2="235" y2="215" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowFb)" stroke-dasharray="6,3"/>
+  <line x1="520" y1="230" x2="235" y2="230" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowFb)" stroke-dasharray="6,3"/>
+  <rect x="320" y="190" width="110" height="18" rx="4" fill="#1a1a2e"/>
+  <text x="375" y="203" text-anchor="middle" fill="#FFD54F" font-size="11" font-weight="bold">Feedback...</text>
+
+  <!-- Result Arrow -->
+  <line x1="520" y1="270" x2="235" y2="270" stroke="#42A5F5" stroke-width="3" marker-end="url(#arrowRs)"/>
+  <rect x="295" y="256" width="160" height="22" rx="5" fill="#1a1a2e"/>
+  <text x="375" y="272" text-anchor="middle" fill="#42A5F5" font-size="12" font-weight="bold">Result (delta: -0.40)</text>
+
+  <!-- Legend -->
+  <rect x="100" y="325" width="550" height="70" rx="10" fill="#2d2d4e"/>
+  <rect x="130" y="345" width="14" height="10" rx="2" fill="#66BB6A"/>
+  <text x="150" y="354" fill="#ccc" font-size="10">Goal: Objetivo enviado al servidor</text>
+  <rect x="340" y="345" width="14" height="10" rx="2" fill="#FFD54F"/>
+  <text x="360" y="354" fill="#ccc" font-size="10">Feedback: Info intermedia</text>
+  <rect x="510" y="345" width="14" height="10" rx="2" fill="#42A5F5"/>
+  <text x="530" y="354" fill="#ccc" font-size="10">Result: Resultado final</text>
+  <text x="375" y="380" text-anchor="middle" fill="#888899" font-size="10">Ejemplo: /turtle1/rotate_absolute [turtlesim/action/RotateAbsolute]</text>
+</svg>

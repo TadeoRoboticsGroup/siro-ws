@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+    <marker id="arrowW" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ffffff"/>
+    </marker>
+    <marker id="arrowR" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#EF5350"/>
+    </marker>
+    <marker id="arrowG" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#66BB6A"/>
+    </marker>
+    <marker id="arrowY" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FFD54F"/>
+    </marker>
+    <linearGradient id="masterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#EF5350;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B71C1C;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="ros1Node" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#78909C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#455A64;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="ros2Node" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#42A5F5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1565C0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="ddsGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#66BB6A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E7D32;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="620" rx="15" fill="#1a1a2e"/>
+
+  <!-- ==================== ROS 1 SIDE ==================== -->
+  <text x="225" y="35" text-anchor="middle" fill="#EF5350" font-size="24" font-weight="bold">ROS 1</text>
+  <text x="225" y="55" text-anchor="middle" fill="#EF9A9A" font-size="11">Arquitectura Centralizada</text>
+
+  <!-- ROS 1 border -->
+  <rect x="15" y="65" width="420" height="530" rx="12" fill="none" stroke="#EF535066" stroke-width="2" stroke-dasharray="8,4"/>
+
+  <!-- ROS Master (central) -->
+  <rect x="120" y="85" width="210" height="80" rx="14" fill="url(#masterGrad)" filter="url(#shadow)"/>
+  <text x="225" y="115" text-anchor="middle" fill="#fff" font-size="17" font-weight="bold">ROS Master</text>
+  <text x="225" y="135" text-anchor="middle" fill="#ffcdd2" font-size="10">roscore (XML-RPC)</text>
+  <text x="225" y="150" text-anchor="middle" fill="#ffcdd2" font-size="9">Punto unico de fallo</text>
+
+  <!-- ROS1 Node A -->
+  <rect x="30" y="220" width="150" height="65" rx="10" fill="url(#ros1Node)" filter="url(#shadow)"/>
+  <text x="105" y="248" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">Nodo A</text>
+  <text x="105" y="268" text-anchor="middle" fill="#cfd8dc" font-size="9">/camera_node</text>
+
+  <!-- ROS1 Node B -->
+  <rect x="270" y="220" width="150" height="65" rx="10" fill="url(#ros1Node)" filter="url(#shadow)"/>
+  <text x="345" y="248" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">Nodo B</text>
+  <text x="345" y="268" text-anchor="middle" fill="#cfd8dc" font-size="9">/process_node</text>
+
+  <!-- ROS1 Node C -->
+  <rect x="30" y="340" width="150" height="65" rx="10" fill="url(#ros1Node)" filter="url(#shadow)"/>
+  <text x="105" y="368" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">Nodo C</text>
+  <text x="105" y="388" text-anchor="middle" fill="#cfd8dc" font-size="9">/motor_node</text>
+
+  <!-- ROS1 Node D -->
+  <rect x="270" y="340" width="150" height="65" rx="10" fill="url(#ros1Node)" filter="url(#shadow)"/>
+  <text x="345" y="368" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">Nodo D</text>
+  <text x="345" y="388" text-anchor="middle" fill="#cfd8dc" font-size="9">/lidar_node</text>
+
+  <!-- Arrows from Master to all nodes (registration) -->
+  <line x1="175" y1="165" x2="120" y2="218" stroke="#EF5350" stroke-width="1.5" marker-end="url(#arrowR)" stroke-dasharray="4,3"/>
+  <line x1="275" y1="165" x2="330" y2="218" stroke="#EF5350" stroke-width="1.5" marker-end="url(#arrowR)" stroke-dasharray="4,3"/>
+  <line x1="160" y1="165" x2="105" y2="335" stroke="#EF5350" stroke-width="1.5" marker-end="url(#arrowR)" stroke-dasharray="4,3"/>
+  <line x1="290" y1="165" x2="345" y2="335" stroke="#EF5350" stroke-width="1.5" marker-end="url(#arrowR)" stroke-dasharray="4,3"/>
+
+  <!-- Direct TCP/IP connections between nodes -->
+  <line x1="180" y1="252" x2="268" y2="252" stroke="#ffffff88" stroke-width="1.5" marker-end="url(#arrowW)"/>
+  <text x="225" y="245" text-anchor="middle" fill="#aaa" font-size="8">TCP/IP</text>
+
+  <line x1="105" y1="285" x2="105" y2="338" stroke="#ffffff88" stroke-width="1.5" marker-end="url(#arrowW)"/>
+  <line x1="345" y1="285" x2="345" y2="338" stroke="#ffffff88" stroke-width="1.5" marker-end="url(#arrowW)"/>
+
+  <!-- ROS1 Communication layer -->
+  <rect x="40" y="435" width="370" height="45" rx="8" fill="#37474F" stroke="#78909C" stroke-width="1.5"/>
+  <text x="225" y="462" text-anchor="middle" fill="#B0BEC5" font-size="13" font-weight="bold">TCPROS / UDPROS + XML-RPC</text>
+
+  <!-- ROS1 characteristics -->
+  <rect x="40" y="500" width="370" height="80" rx="8" fill="#2d2d4e"/>
+  <text x="55" y="520" fill="#EF9A9A" font-size="10">X Solo Linux</text>
+  <text x="55" y="536" fill="#EF9A9A" font-size="10">X roscore obligatorio (punto unico de fallo)</text>
+  <text x="55" y="552" fill="#EF9A9A" font-size="10">X Sin soporte real-time</text>
+  <text x="55" y="568" fill="#EF9A9A" font-size="10">X Registro centralizado de nodos</text>
+
+  <!-- ==================== ROS 2 SIDE ==================== -->
+  <text x="675" y="35" text-anchor="middle" fill="#42A5F5" font-size="24" font-weight="bold">ROS 2</text>
+  <text x="675" y="55" text-anchor="middle" fill="#90CAF9" font-size="11">Arquitectura Distribuida</text>
+
+  <!-- ROS 2 border -->
+  <rect x="465" y="65" width="420" height="530" rx="12" fill="none" stroke="#42A5F566" stroke-width="2" stroke-dasharray="8,4"/>
+
+  <!-- NO Master label -->
+  <rect x="580" y="85" width="190" height="50" rx="10" fill="#1a1a2e" stroke="#66BB6A" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="675" y="108" text-anchor="middle" fill="#66BB6A" font-size="14" font-weight="bold">Sin ROS Master</text>
+  <text x="675" y="125" text-anchor="middle" fill="#A5D6A7" font-size="10">Discovery automatico (DDS)</text>
+
+  <!-- ROS2 Node A -->
+  <rect x="490" y="180" width="150" height="65" rx="10" fill="url(#ros2Node)" filter="url(#shadow)"/>
+  <text x="565" y="208" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">Nodo A</text>
+  <text x="565" y="228" text-anchor="middle" fill="#bbdefb" font-size="9">/camera_node</text>
+
+  <!-- ROS2 Node B -->
+  <rect x="710" y="180" width="150" height="65" rx="10" fill="url(#ros2Node)" filter="url(#shadow)"/>
+  <text x="785" y="208" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">Nodo B</text>
+  <text x="785" y="228" text-anchor="middle" fill="#bbdefb" font-size="9">/process_node</text>
+
+  <!-- ROS2 Node C -->
+  <rect x="490" y="300" width="150" height="65" rx="10" fill="url(#ros2Node)" filter="url(#shadow)"/>
+  <text x="565" y="328" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">Nodo C</text>
+  <text x="565" y="348" text-anchor="middle" fill="#bbdefb" font-size="9">/motor_node</text>
+
+  <!-- ROS2 Node D -->
+  <rect x="710" y="300" width="150" height="65" rx="10" fill="url(#ros2Node)" filter="url(#shadow)"/>
+  <text x="785" y="328" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">Nodo D</text>
+  <text x="785" y="348" text-anchor="middle" fill="#bbdefb" font-size="9">/lidar_node</text>
+
+  <!-- Peer-to-peer connections (mesh) -->
+  <line x1="640" y1="212" x2="708" y2="212" stroke="#66BB6A" stroke-width="2" marker-end="url(#arrowG)"/>
+  <line x1="640" y1="332" x2="708" y2="332" stroke="#66BB6A" stroke-width="2" marker-end="url(#arrowG)"/>
+  <line x1="565" y1="245" x2="565" y2="298" stroke="#66BB6A" stroke-width="2" marker-end="url(#arrowG)"/>
+  <line x1="785" y1="245" x2="785" y2="298" stroke="#66BB6A" stroke-width="2" marker-end="url(#arrowG)"/>
+  <!-- Diagonal connections -->
+  <line x1="635" y1="240" x2="715" y2="305" stroke="#66BB6A99" stroke-width="1.5" marker-end="url(#arrowG)"/>
+  <line x1="715" y1="240" x2="635" y2="305" stroke="#66BB6A99" stroke-width="1.5" marker-end="url(#arrowG)"/>
+
+  <text x="675" y="275" text-anchor="middle" fill="#A5D6A7" font-size="9" font-weight="bold">Peer-to-Peer</text>
+
+  <!-- DDS Layer -->
+  <rect x="490" y="395" width="370" height="45" rx="8" fill="url(#ddsGrad)" filter="url(#shadow)"/>
+  <text x="675" y="422" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">DDS (Data Distribution Service)</text>
+
+  <!-- QoS sublayer -->
+  <rect x="510" y="445" width="120" height="22" rx="5" fill="#1B5E20"/>
+  <text x="570" y="460" text-anchor="middle" fill="#A5D6A7" font-size="9">QoS Policies</text>
+  <rect x="640" y="445" width="100" height="22" rx="5" fill="#1B5E20"/>
+  <text x="690" y="460" text-anchor="middle" fill="#A5D6A7" font-size="9">Real-Time</text>
+  <rect x="750" y="445" width="100" height="22" rx="5" fill="#1B5E20"/>
+  <text x="800" y="460" text-anchor="middle" fill="#A5D6A7" font-size="9">Security</text>
+
+  <!-- ROS2 characteristics -->
+  <rect x="490" y="500" width="370" height="80" rx="8" fill="#2d2d4e"/>
+  <text x="505" y="520" fill="#A5D6A7" font-size="10">+ Linux, Windows, macOS</text>
+  <text x="505" y="536" fill="#A5D6A7" font-size="10">+ Sin punto unico de fallo (descentralizado)</text>
+  <text x="505" y="552" fill="#A5D6A7" font-size="10">+ Soporte real-time y QoS configurable</text>
+  <text x="505" y="568" fill="#A5D6A7" font-size="10">+ Discovery automatico entre nodos</text>
+
+  <!-- VS divider -->
+  <line x1="450" y1="75" x2="450" y2="590" stroke="#ffffff22" stroke-width="2"/>
+  <rect x="430" y="300" width="40" height="30" rx="8" fill="#FFD54F"/>
+  <text x="450" y="320" text-anchor="middle" fill="#1a1a2e" font-size="13" font-weight="bold">VS</text>
+</svg>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 350" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="750" height="350" rx="15" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="375" y="38" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold">Interfaces en ROS 2</text>
+  <text x="375" y="58" text-anchor="middle" fill="#aaaacc" font-size="12">Definen la estructura de datos para la comunicacion entre nodos</text>
+
+  <!-- Message (.msg) -->
+  <rect x="30" y="85" width="210" height="200" rx="12" fill="#1565C0" filter="url(#shadow)"/>
+  <text x="135" y="115" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">Mensajes (.msg)</text>
+  <text x="135" y="135" text-anchor="middle" fill="#bbdefb" font-size="10">Datos en Topics</text>
+  <rect x="50" y="148" width="170" height="120" rx="6" fill="#0D47A1"/>
+  <text x="60" y="168" fill="#90CAF9" font-size="10" font-family="monospace">geometry_msgs/Twist</text>
+  <line x1="50" y1="178" x2="220" y2="178" stroke="#1565C0" stroke-width="1"/>
+  <text x="60" y="195" fill="#aaa" font-size="10" font-family="monospace">Vector3 linear</text>
+  <text x="75" y="210" fill="#888" font-size="9" font-family="monospace">float64 x</text>
+  <text x="75" y="225" fill="#888" font-size="9" font-family="monospace">float64 y</text>
+  <text x="75" y="240" fill="#888" font-size="9" font-family="monospace">float64 z</text>
+  <text x="60" y="258" fill="#aaa" font-size="10" font-family="monospace">Vector3 angular</text>
+
+  <!-- Service (.srv) -->
+  <rect x="270" y="85" width="210" height="200" rx="12" fill="#6A1B9A" filter="url(#shadow)"/>
+  <text x="375" y="115" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">Servicios (.srv)</text>
+  <text x="375" y="135" text-anchor="middle" fill="#e1bee7" font-size="10">Request / Response</text>
+  <rect x="290" y="148" width="170" height="120" rx="6" fill="#4A148C"/>
+  <text x="300" y="168" fill="#CE93D8" font-size="10" font-family="monospace">turtlesim/srv/Spawn</text>
+  <line x1="290" y1="178" x2="460" y2="178" stroke="#6A1B9A" stroke-width="1"/>
+  <text x="300" y="195" fill="#aaa" font-size="10" font-family="monospace">float32 x</text>
+  <text x="300" y="210" fill="#aaa" font-size="10" font-family="monospace">float32 y</text>
+  <text x="300" y="225" fill="#aaa" font-size="10" font-family="monospace">string name</text>
+  <text x="300" y="240" fill="#FFD54F" font-size="10" font-family="monospace">---</text>
+  <text x="300" y="258" fill="#aaa" font-size="10" font-family="monospace">string name</text>
+
+  <!-- Action (.action) -->
+  <rect x="510" y="85" width="210" height="200" rx="12" fill="#E65100" filter="url(#shadow)"/>
+  <text x="615" y="115" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">Acciones (.action)</text>
+  <text x="615" y="135" text-anchor="middle" fill="#ffccbc" font-size="10">Goal / Result / Feedback</text>
+  <rect x="530" y="148" width="170" height="120" rx="6" fill="#BF360C"/>
+  <text x="540" y="168" fill="#FFAB91" font-size="9" font-family="monospace">turtlesim/RotateAbsolute</text>
+  <line x1="530" y1="178" x2="700" y2="178" stroke="#E65100" stroke-width="1"/>
+  <text x="540" y="195" fill="#aaa" font-size="10" font-family="monospace">float32 theta</text>
+  <text x="540" y="210" fill="#FFD54F" font-size="10" font-family="monospace">---</text>
+  <text x="540" y="225" fill="#aaa" font-size="10" font-family="monospace">float32 delta</text>
+  <text x="540" y="240" fill="#FFD54F" font-size="10" font-family="monospace">---</text>
+  <text x="540" y="258" fill="#aaa" font-size="10" font-family="monospace">float32 remaining</text>
+
+  <!-- Footer -->
+  <text x="375" y="320" text-anchor="middle" fill="#888899" font-size="11">Las interfaces se definen en archivos .msg, .srv o .action dentro de los paquetes</text>
+  <text x="375" y="338" text-anchor="middle" fill="#666677" font-size="10">Comando: ros2 interface show [tipo_interfaz]</text>
+</svg>

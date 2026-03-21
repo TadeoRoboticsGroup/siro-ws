@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+    <linearGradient id="clientGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#AB47BC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6A1B9A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="serverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#26A69A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00695C;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrowReq" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#42A5F5"/>
+    </marker>
+    <marker id="arrowRes" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#EF5350"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="350" rx="15" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="350" y="38" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold">Servicios (Services) - Cliente / Servidor</text>
+  <text x="350" y="58" text-anchor="middle" fill="#aaaacc" font-size="12">Comunicacion sincrona - Solicitud y Respuesta</text>
+
+  <!-- Client Node -->
+  <rect x="50" y="110" width="180" height="120" rx="12" fill="url(#clientGrad)" filter="url(#shadow)"/>
+  <text x="140" y="150" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">Cliente</text>
+  <text x="140" y="172" text-anchor="middle" fill="#e1bee7" font-size="11">Nodo que solicita</text>
+  <text x="140" y="190" text-anchor="middle" fill="#e1bee7" font-size="11">un servicio</text>
+  <text x="140" y="215" text-anchor="middle" fill="#ce93d8" font-size="10">Ej: mi_nodo_cliente</text>
+
+  <!-- Server Node -->
+  <rect x="470" y="110" width="180" height="120" rx="12" fill="url(#serverGrad)" filter="url(#shadow)"/>
+  <text x="560" y="150" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">Servidor</text>
+  <text x="560" y="172" text-anchor="middle" fill="#b2dfdb" font-size="11">Nodo que procesa</text>
+  <text x="560" y="190" text-anchor="middle" fill="#b2dfdb" font-size="11">la solicitud</text>
+  <text x="560" y="215" text-anchor="middle" fill="#80cbc4" font-size="10">Ej: /turtlesim</text>
+
+  <!-- Service box in middle -->
+  <rect x="280" y="130" width="140" height="45" rx="8" fill="#2d2d4e" stroke="#FFD54F" stroke-width="2"/>
+  <text x="350" y="148" text-anchor="middle" fill="#FFD54F" font-size="11" font-weight="bold">/spawn</text>
+  <text x="350" y="165" text-anchor="middle" fill="#aaa" font-size="9">turtlesim/srv/Spawn</text>
+
+  <!-- Request Arrow (top) -->
+  <line x1="230" y1="145" x2="275" y2="145" stroke="#42A5F5" stroke-width="2.5" marker-end="url(#arrowReq)"/>
+  <line x1="420" y1="145" x2="465" y2="145" stroke="#42A5F5" stroke-width="2.5" marker-end="url(#arrowReq)"/>
+  <text x="350" y="120" text-anchor="middle" fill="#42A5F5" font-size="12" font-weight="bold">Request (Solicitud)</text>
+  <text x="350" y="108" text-anchor="middle" fill="#64B5F6" font-size="9">{x: 2, y: 2, theta: 0.2, name: 'turtle2'}</text>
+
+  <!-- Response Arrow (bottom) -->
+  <line x1="470" y1="200" x2="230" y2="200" stroke="#EF5350" stroke-width="2.5" marker-end="url(#arrowRes)" stroke-dasharray="8,4"/>
+  <text x="350" y="220" text-anchor="middle" fill="#EF5350" font-size="12" font-weight="bold">Response (Respuesta)</text>
+  <text x="350" y="235" text-anchor="middle" fill="#EF9A9A" font-size="9">{name: 'turtle2'}</text>
+
+  <!-- Footer note -->
+  <rect x="100" y="275" width="500" height="50" rx="8" fill="#2d2d4e"/>
+  <text x="350" y="296" text-anchor="middle" fill="#aaaacc" font-size="11">El cliente envia una solicitud (Request) y espera hasta recibir</text>
+  <text x="350" y="313" text-anchor="middle" fill="#aaaacc" font-size="11">una respuesta (Response) del servidor - Comunicacion sincrona</text>
+</svg>

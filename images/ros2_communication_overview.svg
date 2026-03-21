@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" rx="15" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold">Formas de Comunicacion en ROS 2</text>
+
+  <!-- Topics Section -->
+  <rect x="30" y="60" width="230" height="160" rx="12" fill="#1565C0" filter="url(#shadow)"/>
+  <text x="145" y="88" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">Topics</text>
+  <text x="145" y="108" text-anchor="middle" fill="#bbdefb" font-size="11">Pub / Sub - Asincrono</text>
+  <line x1="50" y1="118" x2="240" y2="118" stroke="#ffffff33" stroke-width="1"/>
+  <text x="55" y="140" fill="#90CAF9" font-size="10">- Comunicacion continua</text>
+  <text x="55" y="158" fill="#90CAF9" font-size="10">- Muchos a muchos</text>
+  <text x="55" y="176" fill="#90CAF9" font-size="10">- No espera respuesta</text>
+  <text x="55" y="194" fill="#90CAF9" font-size="10">- Flujo de datos (sensores)</text>
+  <text x="55" y="212" fill="#64B5F6" font-size="9">Ej: /turtle1/cmd_vel</text>
+
+  <!-- Services Section -->
+  <rect x="285" y="60" width="230" height="160" rx="12" fill="#6A1B9A" filter="url(#shadow)"/>
+  <text x="400" y="88" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">Services</text>
+  <text x="400" y="108" text-anchor="middle" fill="#e1bee7" font-size="11">Req / Res - Sincrono</text>
+  <line x1="305" y1="118" x2="495" y2="118" stroke="#ffffff33" stroke-width="1"/>
+  <text x="310" y="140" fill="#CE93D8" font-size="10">- Solicitud puntual</text>
+  <text x="310" y="158" fill="#CE93D8" font-size="10">- Uno a uno</text>
+  <text x="310" y="176" fill="#CE93D8" font-size="10">- Espera respuesta</text>
+  <text x="310" y="194" fill="#CE93D8" font-size="10">- Operaciones rapidas</text>
+  <text x="310" y="212" fill="#BA68C8" font-size="9">Ej: /spawn, /clear</text>
+
+  <!-- Actions Section -->
+  <rect x="540" y="60" width="230" height="160" rx="12" fill="#E65100" filter="url(#shadow)"/>
+  <text x="655" y="88" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">Actions</text>
+  <text x="655" y="108" text-anchor="middle" fill="#ffccbc" font-size="11">Goal / Feedback / Result</text>
+  <line x1="560" y1="118" x2="750" y2="118" stroke="#ffffff33" stroke-width="1"/>
+  <text x="565" y="140" fill="#FFAB91" font-size="10">- Tareas largas</text>
+  <text x="565" y="158" fill="#FFAB91" font-size="10">- Con retroalimentacion</text>
+  <text x="565" y="176" fill="#FFAB91" font-size="10">- Cancelable</text>
+  <text x="565" y="194" fill="#FFAB91" font-size="10">- Asincrono + feedback</text>
+  <text x="565" y="212" fill="#FF8A65" font-size="9">Ej: /rotate_absolute</text>
+
+  <!-- Parameters Section -->
+  <rect x="155" y="250" width="230" height="140" rx="12" fill="#00695C" filter="url(#shadow)"/>
+  <text x="270" y="278" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">Parameters</text>
+  <text x="270" y="298" text-anchor="middle" fill="#b2dfdb" font-size="11">Configuracion de nodos</text>
+  <line x1="175" y1="308" x2="365" y2="308" stroke="#ffffff33" stroke-width="1"/>
+  <text x="180" y="328" fill="#80CBC4" font-size="10">- Valores configurables</text>
+  <text x="180" y="346" fill="#80CBC4" font-size="10">- Modificables en runtime</text>
+  <text x="180" y="364" fill="#80CBC4" font-size="10">- Tipos: int, float, string, bool</text>
+  <text x="180" y="382" fill="#4DB6AC" font-size="9">Ej: background_r, background_g</text>
+
+  <!-- Launch Section -->
+  <rect x="415" y="250" width="230" height="140" rx="12" fill="#F57F17" filter="url(#shadow)"/>
+  <text x="530" y="278" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">Launch</text>
+  <text x="530" y="298" text-anchor="middle" fill="#fff9c4" font-size="11">Orquestacion de nodos</text>
+  <line x1="435" y1="308" x2="625" y2="308" stroke="#ffffff33" stroke-width="1"/>
+  <text x="440" y="328" fill="#FFF176" font-size="10">- Lanza multiples nodos</text>
+  <text x="440" y="346" fill="#FFF176" font-size="10">- Configura parametros</text>
+  <text x="440" y="364" fill="#FFF176" font-size="10">- Remapea topics</text>
+  <text x="440" y="382" fill="#FFEE58" font-size="9">Ej: ros2 launch pkg file.py</text>
+
+  <!-- Footer -->
+  <text x="400" y="430" text-anchor="middle" fill="#666677" font-size="11">Todas las comunicaciones se realizan sobre DDS (Data Distribution Service)</text>
+</svg>

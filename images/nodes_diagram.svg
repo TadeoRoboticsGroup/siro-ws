@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+    <linearGradient id="nodeGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4FC3F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0288D1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="nodeGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#81C784;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#388E3C;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="nodeGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB74D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F57C00;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="350" rx="15" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="350" y="40" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold">Nodos en ROS 2</text>
+  <text x="350" y="62" text-anchor="middle" fill="#aaaacc" font-size="13">Cada nodo es un proceso independiente que realiza una tarea especifica</text>
+
+  <!-- Node 1: Camera -->
+  <rect x="40" y="100" width="160" height="90" rx="12" fill="url(#nodeGrad1)" filter="url(#shadow)"/>
+  <text x="120" y="135" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">Nodo Camara</text>
+  <text x="120" y="155" text-anchor="middle" fill="#e0f7fa" font-size="11">/camera_node</text>
+  <text x="120" y="175" text-anchor="middle" fill="#e0f7fa" font-size="10">Publica imagenes</text>
+
+  <!-- Node 2: Processing -->
+  <rect x="270" y="100" width="160" height="90" rx="12" fill="url(#nodeGrad2)" filter="url(#shadow)"/>
+  <text x="350" y="135" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">Nodo Procesamiento</text>
+  <text x="350" y="155" text-anchor="middle" fill="#e8f5e9" font-size="11">/process_node</text>
+  <text x="350" y="175" text-anchor="middle" fill="#e8f5e9" font-size="10">Procesa datos</text>
+
+  <!-- Node 3: Motor -->
+  <rect x="500" y="100" width="160" height="90" rx="12" fill="url(#nodeGrad3)" filter="url(#shadow)"/>
+  <text x="580" y="135" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">Nodo Motor</text>
+  <text x="580" y="155" text-anchor="middle" fill="#fff3e0" font-size="11">/motor_node</text>
+  <text x="580" y="175" text-anchor="middle" fill="#fff3e0" font-size="10">Controla motores</text>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ff6b6b"/>
+    </marker>
+  </defs>
+  <line x1="200" y1="145" x2="265" y2="145" stroke="#ff6b6b" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+  <line x1="430" y1="145" x2="495" y2="145" stroke="#ff6b6b" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Labels on arrows -->
+  <text x="232" y="138" text-anchor="middle" fill="#ff6b6b" font-size="9">Topic</text>
+  <text x="462" y="138" text-anchor="middle" fill="#ff6b6b" font-size="9">Topic</text>
+
+  <!-- DDS Layer -->
+  <rect x="60" y="230" width="580" height="50" rx="10" fill="#2d2d4e" stroke="#6c63ff" stroke-width="2"/>
+  <text x="350" y="260" text-anchor="middle" fill="#6c63ff" font-size="15" font-weight="bold">Middleware DDS (Data Distribution Service)</text>
+
+  <!-- Connection lines to DDS -->
+  <line x1="120" y1="190" x2="120" y2="230" stroke="#6c63ff" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <line x1="350" y1="190" x2="350" y2="230" stroke="#6c63ff" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <line x1="580" y1="190" x2="580" y2="230" stroke="#6c63ff" stroke-width="1.5" stroke-dasharray="5,5"/>
+
+  <!-- Footer -->
+  <text x="350" y="320" text-anchor="middle" fill="#888899" font-size="11">Los nodos se comunican entre si a traves de Topics, Services y Actions sobre DDS</text>
+</svg>

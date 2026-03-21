@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 400" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+    <linearGradient id="pubGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#42A5F5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1565C0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="subGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#66BB6A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E7D32;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="topicGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF7043;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E64A19;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FFD54F"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="750" height="400" rx="15" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="375" y="38" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold">Topicos (Topics) - Publicador / Suscriptor</text>
+  <text x="375" y="58" text-anchor="middle" fill="#aaaacc" font-size="12">Comunicacion asincrona - Muchos a muchos</text>
+
+  <!-- Publisher Node 1 -->
+  <rect x="30" y="90" width="150" height="70" rx="10" fill="url(#pubGrad)" filter="url(#shadow)"/>
+  <text x="105" y="120" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">teleop_turtle</text>
+  <text x="105" y="140" text-anchor="middle" fill="#bbdefb" font-size="10">Publisher</text>
+
+  <!-- Publisher Node 2 -->
+  <rect x="30" y="190" width="150" height="70" rx="10" fill="url(#pubGrad)" filter="url(#shadow)"/>
+  <text x="105" y="220" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">nav_node</text>
+  <text x="105" y="240" text-anchor="middle" fill="#bbdefb" font-size="10">Publisher</text>
+
+  <!-- Topic Box -->
+  <rect x="270" y="120" width="200" height="110" rx="15" fill="url(#topicGrad)" filter="url(#shadow)"/>
+  <text x="370" y="160" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">/turtle1/cmd_vel</text>
+  <text x="370" y="180" text-anchor="middle" fill="#ffccbc" font-size="11">geometry_msgs/msg/Twist</text>
+  <text x="370" y="200" text-anchor="middle" fill="#ffccbc" font-size="10">Canal de comunicacion</text>
+  <text x="370" y="215" text-anchor="middle" fill="#ffccbc" font-size="10">(Topic)</text>
+
+  <!-- Subscriber Node 1 -->
+  <rect x="560" y="90" width="150" height="70" rx="10" fill="url(#subGrad)" filter="url(#shadow)"/>
+  <text x="635" y="120" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">turtlesim</text>
+  <text x="635" y="140" text-anchor="middle" fill="#c8e6c9" font-size="10">Subscriber</text>
+
+  <!-- Subscriber Node 2 -->
+  <rect x="560" y="190" width="150" height="70" rx="10" fill="url(#subGrad)" filter="url(#shadow)"/>
+  <text x="635" y="220" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">logger_node</text>
+  <text x="635" y="240" text-anchor="middle" fill="#c8e6c9" font-size="10">Subscriber</text>
+
+  <!-- Arrows Publisher -> Topic -->
+  <line x1="180" y1="125" x2="265" y2="155" stroke="#FFD54F" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="180" y1="225" x2="265" y2="195" stroke="#FFD54F" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Arrows Topic -> Subscriber -->
+  <line x1="470" y1="155" x2="555" y2="125" stroke="#FFD54F" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="470" y1="195" x2="555" y2="225" stroke="#FFD54F" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Legend -->
+  <rect x="100" y="300" width="540" height="75" rx="10" fill="#2d2d4e" stroke="#444466" stroke-width="1"/>
+  <rect x="130" y="320" width="18" height="12" rx="3" fill="url(#pubGrad)"/>
+  <text x="155" y="330" fill="#ccc" font-size="11">Publisher (publica mensajes)</text>
+  <rect x="350" y="320" width="18" height="12" rx="3" fill="url(#topicGrad)"/>
+  <text x="375" y="330" fill="#ccc" font-size="11">Topic (canal)</text>
+  <rect x="500" y="320" width="18" height="12" rx="3" fill="url(#subGrad)"/>
+  <text x="525" y="330" fill="#ccc" font-size="11">Subscriber (recibe)</text>
+  <text x="375" y="358" text-anchor="middle" fill="#888899" font-size="10">Relaciones: Muchos a Uno | Uno a Muchos | Muchos a Muchos</text>
+</svg>

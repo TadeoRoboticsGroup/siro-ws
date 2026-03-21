@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 650" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+    <marker id="arrowJ" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FFD54F"/>
+    </marker>
+    <linearGradient id="linkGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#42A5F5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1565C0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="jointGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF7043;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D84315;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="linkGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#66BB6A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E7D32;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="linkGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#AB47BC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6A1B9A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="linkGrad4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#26C6DA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00838F;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="850" height="650" rx="15" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="425" y="35" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold">URDF - Unified Robot Description Format</text>
+  <text x="425" y="55" text-anchor="middle" fill="#aaaacc" font-size="12">Estructura de Links (piezas) y Joints (articulaciones) de un robot</text>
+
+  <!-- ==================== LEFT: Robot Tree Structure ==================== -->
+  <text x="230" y="85" text-anchor="middle" fill="#FFD54F" font-size="16" font-weight="bold">Arbol de Links y Joints</text>
+
+  <!-- base_link (root) -->
+  <rect x="155" y="105" width="150" height="55" rx="10" fill="url(#linkGrad)" filter="url(#shadow)"/>
+  <text x="230" y="130" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">base_link</text>
+  <text x="230" y="148" text-anchor="middle" fill="#bbdefb" font-size="9">Link raiz (chasis)</text>
+
+  <!-- Joint 1: base -> torso -->
+  <rect x="185" y="175" width="90" height="30" rx="6" fill="url(#jointGrad)"/>
+  <text x="230" y="195" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">joint_torso</text>
+  <text x="305" y="193" fill="#FFAB91" font-size="9">fixed</text>
+  <line x1="230" y1="160" x2="230" y2="175" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowJ)"/>
+
+  <!-- torso_link -->
+  <rect x="155" y="220" width="150" height="55" rx="10" fill="url(#linkGrad2)" filter="url(#shadow)"/>
+  <text x="230" y="245" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">torso_link</text>
+  <text x="230" y="263" text-anchor="middle" fill="#c8e6c9" font-size="9">Link torso</text>
+  <line x1="230" y1="205" x2="230" y2="220" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowJ)"/>
+
+  <!-- Branch left: arm_left -->
+  <!-- Joint left arm -->
+  <rect x="45" y="295" width="105" height="30" rx="6" fill="url(#jointGrad)"/>
+  <text x="97" y="315" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">joint_arm_L</text>
+  <text x="160" y="313" fill="#FFAB91" font-size="9">revolute</text>
+  <line x1="195" y1="275" x2="97" y2="295" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowJ)"/>
+
+  <!-- arm_left_link -->
+  <rect x="25" y="340" width="145" height="50" rx="10" fill="url(#linkGrad3)" filter="url(#shadow)"/>
+  <text x="97" y="363" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">arm_left_link</text>
+  <text x="97" y="380" text-anchor="middle" fill="#e1bee7" font-size="9">Brazo izquierdo</text>
+  <line x1="97" y1="325" x2="97" y2="340" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowJ)"/>
+
+  <!-- Joint left gripper -->
+  <rect x="45" y="410" width="105" height="30" rx="6" fill="url(#jointGrad)"/>
+  <text x="97" y="430" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">joint_grip_L</text>
+  <text x="160" y="428" fill="#FFAB91" font-size="9">prismatic</text>
+  <line x1="97" y1="390" x2="97" y2="410" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowJ)"/>
+
+  <!-- gripper_left_link -->
+  <rect x="25" y="455" width="145" height="50" rx="10" fill="url(#linkGrad4)" filter="url(#shadow)"/>
+  <text x="97" y="478" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">gripper_L_link</text>
+  <text x="97" y="495" text-anchor="middle" fill="#b2ebf2" font-size="9">Pinza izquierda</text>
+  <line x1="97" y1="440" x2="97" y2="455" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowJ)"/>
+
+  <!-- Branch right: arm_right -->
+  <!-- Joint right arm -->
+  <rect x="310" y="295" width="105" height="30" rx="6" fill="url(#jointGrad)"/>
+  <text x="362" y="315" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">joint_arm_R</text>
+  <text x="258" y="313" fill="#FFAB91" font-size="9">revolute</text>
+  <line x1="265" y1="275" x2="362" y2="295" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowJ)"/>
+
+  <!-- arm_right_link -->
+  <rect x="290" y="340" width="145" height="50" rx="10" fill="url(#linkGrad3)" filter="url(#shadow)"/>
+  <text x="362" y="363" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">arm_right_link</text>
+  <text x="362" y="380" text-anchor="middle" fill="#e1bee7" font-size="9">Brazo derecho</text>
+  <line x1="362" y1="325" x2="362" y2="340" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowJ)"/>
+
+  <!-- Joint right gripper -->
+  <rect x="310" y="410" width="105" height="30" rx="6" fill="url(#jointGrad)"/>
+  <text x="362" y="430" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">joint_grip_R</text>
+  <text x="258" y="428" fill="#FFAB91" font-size="9">prismatic</text>
+  <line x1="362" y1="390" x2="362" y2="410" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowJ)"/>
+
+  <!-- gripper_right_link -->
+  <rect x="290" y="455" width="145" height="50" rx="10" fill="url(#linkGrad4)" filter="url(#shadow)"/>
+  <text x="362" y="478" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">gripper_R_link</text>
+  <text x="362" y="495" text-anchor="middle" fill="#b2ebf2" font-size="9">Pinza derecha</text>
+  <line x1="362" y1="440" x2="362" y2="455" stroke="#FFD54F" stroke-width="2" marker-end="url(#arrowJ)"/>
+
+  <!-- ==================== RIGHT: Component Details ==================== -->
+  <line x1="475" y1="75" x2="475" y2="620" stroke="#ffffff15" stroke-width="2"/>
+
+  <!-- Link detail box -->
+  <text x="665" y="85" text-anchor="middle" fill="#42A5F5" font-size="16" font-weight="bold">Estructura de un Link</text>
+
+  <rect x="505" y="100" width="310" height="170" rx="10" fill="#0D47A1" filter="url(#shadow)"/>
+  <text x="660" y="125" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">&lt;link name="base_link"&gt;</text>
+
+  <!-- Visual -->
+  <rect x="520" y="140" width="130" height="55" rx="6" fill="#1565C0" stroke="#42A5F5" stroke-width="1"/>
+  <text x="585" y="158" text-anchor="middle" fill="#90CAF9" font-size="11" font-weight="bold">&lt;visual&gt;</text>
+  <text x="585" y="175" text-anchor="middle" fill="#64B5F6" font-size="9">&lt;geometry&gt;</text>
+  <text x="585" y="188" text-anchor="middle" fill="#64B5F6" font-size="8">box / cylinder / mesh</text>
+
+  <!-- Collision -->
+  <rect x="665" y="140" width="135" height="55" rx="6" fill="#1565C0" stroke="#42A5F5" stroke-width="1"/>
+  <text x="732" y="158" text-anchor="middle" fill="#90CAF9" font-size="11" font-weight="bold">&lt;collision&gt;</text>
+  <text x="732" y="175" text-anchor="middle" fill="#64B5F6" font-size="9">&lt;geometry&gt;</text>
+  <text x="732" y="188" text-anchor="middle" fill="#64B5F6" font-size="8">forma simplificada</text>
+
+  <!-- Inertial -->
+  <rect x="520" y="205" width="130" height="50" rx="6" fill="#1565C0" stroke="#42A5F5" stroke-width="1"/>
+  <text x="585" y="225" text-anchor="middle" fill="#90CAF9" font-size="11" font-weight="bold">&lt;inertial&gt;</text>
+  <text x="585" y="242" text-anchor="middle" fill="#64B5F6" font-size="9">mass, inertia</text>
+
+  <!-- Material -->
+  <rect x="665" y="205" width="135" height="50" rx="6" fill="#1565C0" stroke="#42A5F5" stroke-width="1"/>
+  <text x="732" y="225" text-anchor="middle" fill="#90CAF9" font-size="11" font-weight="bold">&lt;material&gt;</text>
+  <text x="732" y="242" text-anchor="middle" fill="#64B5F6" font-size="9">color rgba</text>
+
+  <!-- Joint detail box -->
+  <text x="665" y="300" text-anchor="middle" fill="#FF7043" font-size="16" font-weight="bold">Estructura de un Joint</text>
+
+  <rect x="505" y="315" width="310" height="125" rx="10" fill="#BF360C" filter="url(#shadow)"/>
+  <text x="660" y="338" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">&lt;joint name="j1" type="revolute"&gt;</text>
+
+  <text x="525" y="360" fill="#FFAB91" font-size="11">&lt;parent link="torso_link"/&gt;</text>
+  <text x="525" y="380" fill="#FFAB91" font-size="11">&lt;child link="arm_left_link"/&gt;</text>
+  <text x="525" y="400" fill="#FFAB91" font-size="11">&lt;origin xyz="0 0.5 0" rpy="0 0 0"/&gt;</text>
+  <text x="525" y="420" fill="#FFAB91" font-size="11">&lt;axis xyz="0 0 1"/&gt;</text>
+  <text x="525" y="430" fill="#FF8A65" font-size="9"></text>
+
+  <!-- Joint Types box -->
+  <text x="665" y="470" text-anchor="middle" fill="#FFD54F" font-size="14" font-weight="bold">Tipos de Joints</text>
+  <rect x="505" y="480" width="310" height="140" rx="10" fill="#2d2d4e" stroke="#FFD54F66" stroke-width="1.5"/>
+
+  <!-- Joint type entries -->
+  <rect x="520" y="495" width="90" height="22" rx="4" fill="#E65100"/>
+  <text x="565" y="510" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">revolute</text>
+  <text x="625" y="510" fill="#aaa" font-size="10">Rotacion con limites</text>
+
+  <rect x="520" y="523" width="90" height="22" rx="4" fill="#F57F17"/>
+  <text x="565" y="538" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">continuous</text>
+  <text x="625" y="538" fill="#aaa" font-size="10">Rotacion sin limites</text>
+
+  <rect x="520" y="551" width="90" height="22" rx="4" fill="#2E7D32"/>
+  <text x="565" y="566" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">prismatic</text>
+  <text x="625" y="566" fill="#aaa" font-size="10">Traslacion lineal</text>
+
+  <rect x="520" y="579" width="90" height="22" rx="4" fill="#1565C0"/>
+  <text x="565" y="594" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">fixed</text>
+  <text x="625" y="594" fill="#aaa" font-size="10">Sin movimiento (rigido)</text>
+
+  <!-- Legend at bottom -->
+  <rect x="30" y="530" width="420" height="100" rx="10" fill="#2d2d4e"/>
+  <text x="240" y="552" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">Leyenda</text>
+  <rect x="55" y="565" width="16" height="12" rx="3" fill="url(#linkGrad)"/>
+  <text x="80" y="575" fill="#90CAF9" font-size="10">Link = Pieza rigida del robot</text>
+  <rect x="250" y="565" width="16" height="12" rx="3" fill="url(#jointGrad)"/>
+  <text x="275" y="575" fill="#FFAB91" font-size="10">Joint = Articulacion / Conexion</text>
+  <text x="240" y="600" text-anchor="middle" fill="#888" font-size="10">El URDF forma un arbol: un link raiz (base_link) conecta con los demas mediante joints</text>
+  <text x="240" y="616" text-anchor="middle" fill="#666" font-size="9">Archivos: .urdf (XML) | .xacro (XML con macros) | .sdf (Gazebo)</text>
+</svg>

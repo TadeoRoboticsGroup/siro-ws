@@ -21,6 +21,10 @@ La idea de crear un sistema operativo era estandarizar tareas como la *abstracci
 
 ## DIFERENCIAS ENTRE ROS1 Y ROS2
 
+<div align="center">
+    <img src="/images/ros1_vs_ros2_diagram.svg" alt="ROS1 vs ROS2" width="85%" max-width="100%">
+</div>
+
 | Característica        | ROS1          | ROS2        |
 |-----------------------|---------------|-------------|
 | **Arquitectura**  | Basada en un sistema de nodos con comunicación XML-RPC y TCP/IP | Arquitectura modular y distribuida, comunicación basada en DDS    |
@@ -55,10 +59,20 @@ En resumen, la arquitectura de ROS2 se caracteriza por su modularidad, su sistem
     <img src="/images/arquitectura.png" alt="Arquitectura de ros" width="50%" max-width="100%">
 </div>
 
+### Formas de comunicación en ROS 2
+
+<div id="header" align="center">
+    <img src="/images/ros2_communication_overview.svg" alt="Comunicación en ROS 2" width="80%" max-width="100%">
+</div>
+
 <br>
 
 ## NODOS
 Los nodos son bloques de código (clases) que se encargan de partes específicas de las actividades del robot. Estos se van a enlazar mediante tópicos, servicios o acciones. Básicamente nos ayudan a crear un sistema modular que se pueda modificar fácilmente y comunicar.
+
+<div align="center">
+    <img src="/images/nodes_diagram.svg" alt="Diagrama de Nodos" width="70%" max-width="100%">
+</div>
 
 ### Comandos básicos
 Usaremos el paquete turtlesim que puedes instalar [`aquí`](./turtlesim/README.md).
@@ -143,7 +157,11 @@ En este caso vemos la información del nodo `/turtlesim`
 ## TOPICOS
 Son canales en los cuales unos nodos publican información y otros se suscriben para recibirla. La relación para la comunicación puede ser de  *muchos a uno*(one to many), *muchos a uno*(many to one) y *muchos a muchos*(many to many).
 
-### Caraterísticas de los tópicos
+<div align="center">
+    <img src="/images/topics_diagram.svg" alt="Diagrama de Tópicos" width="75%" max-width="100%">
+</div>
+
+### Características de los tópicos
 - **Definición de Tópicos**:
 Canales de comunicación identificados por un nombre único.
 - **Tipos de Mensajes**:
@@ -510,6 +528,10 @@ Retorna la velocidad de publicación.
 
 ## SERVICIOS
 
+<div align="center">
+    <img src="/images/services_diagram.svg" alt="Diagrama de Servicios" width="70%" max-width="100%">
+</div>
+
 En ROS 2, los servicios son un mecanismo de comunicación que permite a los nodos intercambiar datos de forma *síncrona*. A través de los servicios, un nodo (el servidor) puede ofrecer una funcionalidad específica que otros nodos (los clientes) pueden solicitar. Cuando un cliente hace una solicitud a un servicio, espera una respuesta inmediata del servidor. Esto es diferente de los temas (o topics), que son de naturaleza *asíncrona*.
 
 Un servicio en ROS 2 tiene tres componentes principales:
@@ -576,7 +598,7 @@ Retorna
 
 2. Ver el tipo de los servicios.
 ```bash
-ros2 service list 
+ros2 service list -t
 ```
 Retorna
 ```
@@ -601,7 +623,7 @@ Retorna
   /turtlesim/set_parameters_atomically [rcl_interfaces/srv/SetParametersAtomically]
 ```
 
-3. Ver rl tipo de un servicio en específico.
+3. Ver el tipo de un servicio en específico.
 ```bash
 ros2 service type /clear
 ```
@@ -612,7 +634,7 @@ El tipo de servicio es un servicio estandar vacio.
 
 4. Visualizar si los servicios de algún tipo están ejecutándose.
 ```bash
-ros2 servide find std_srvs/srv/Empty
+ros2 service find std_srvs/srv/Empty
 ```
 En este caso tenemos dos servicios de este tipo.
 ```
@@ -620,7 +642,7 @@ En este caso tenemos dos servicios de este tipo.
   /reset
 ```
 
-5. Para llamar i usar un servicio.
+5. Para llamar y usar un servicio.
 ```bash
 ros2 service call /clear std_srvs/srv/Empty
 ```
@@ -647,7 +669,7 @@ Retorna
 ```
 
 
-7. Llamar el servicio Spawm
+7. Llamar el servicio Spawn
 ```bash
 ros2 service call /spawn turtlesim/srv/Spawn "{x: 2, y: 2, theta: 0.2, name: 'tortuga_mario'}"
 ```
@@ -663,6 +685,10 @@ turtlesim.srv.Spawn_Response(name='tortuga_mario')
 
 ## ACCIONES
 
+<div align="center">
+    <img src="/images/actions_diagram.svg" alt="Diagrama de Acciones" width="75%" max-width="100%">
+</div>
+
 Las acciones en ROS 2 permiten a los nodos ejecutar tareas complejas de forma asíncrona, con retroalimentación y capacidad de cancelación. Son útiles para operaciones que requieren tiempo y seguimiento.
 
 Una acción tiene tres componentes:
@@ -674,7 +700,7 @@ Una acción tiene tres componentes:
 
 ### Tipos de Acciones
 
-- **Simple**: e envía un solo objetivo, el servidor procesa y devuelve un resultado.
+- **Simple**: Se envía un solo objetivo, el servidor procesa y devuelve un resultado.
 - **Compuesta**: Involucra varios pasos o sub-tareas secuenciales, con feedback entre cada uno.
 
 ### Sistemas
@@ -770,7 +796,7 @@ Y podemos revisar la arquitectura del nodo:
   Action Clients:
     /turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
 ```
-EEn este caso, el nodo tiene un `Action client`
+En este caso, el nodo tiene un `Action client`
 ```
   Action Clients:
     /turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
@@ -790,20 +816,22 @@ En consola se listan las acciones en ejecución
 ```bash
 ros2 action list -t
 ```
-En consla observamos las acciones y el tipo:
+En consola observamos las acciones y el tipo:
 ```
 /turtle1/rotate_absolute [turtlesim/action/RotateAbsolute]
 ```
 
 3. Ver informacion de una accion
 ```bash
-ros2 action info /turtlesim/action/RotateAbsolute
+ros2 action info /turtle1/rotate_absolute
 ```
 En este caso se observaran el servidor y los clientes:
 ```
-Action: /turtlesim/action/RotateAbsolute
+Action: /turtle1/rotate_absolute
 Action clients: 1
+    /teleop_turtle
 Action servers: 1
+    /turtlesim
 ```
 
 4. Ver interfaz de la acción
@@ -866,6 +894,11 @@ Goal finished with status: SUCCEEDED
 ```
 
 ## INTERFACES
+
+<div align="center">
+    <img src="/images/interfaces_diagram.svg" alt="Diagrama de Interfaces" width="75%" max-width="100%">
+</div>
+
 En ROS 2, las interfaces definen cómo se comunican los nodos entre sí mediante mensajes, servicios o acciones. Son plantillas que describen los datos que se intercambian en las comunicaciones.
 
 
@@ -918,7 +951,117 @@ ros2 interface show geometry_msgs/msg/Twist
 ros2 interface show turtlesim/srv/TeleportAbsolute
 ```
 
+## PARAMETROS
+
+<div align="center">
+    <img src="/images/parameters_diagram.svg" alt="Diagrama de Parámetros" width="70%" max-width="100%">
+</div>
+
+Los parámetros en ROS 2 son valores de configuración de los nodos que pueden ser modificados en tiempo de ejecución sin necesidad de recompilar el código. Cada nodo puede declarar y usar sus propios parámetros. Los tipos soportados son: `integer`, `float`, `string`, `boolean`, `byte array` y listas.
+
+### Comandos básicos
+
+Asegúrate de tener los nodos `turtlesim_node` y `turtle_teleop_key` en ejecución.
+
+1. Listar los parámetros de todos los nodos.
+```bash
+ros2 param list
+```
+Retorna los parámetros de cada nodo en ejecución.
+```
+/teleop_turtle:
+  qos_overrides./parameter_events.publisher.depth
+  qos_overrides./parameter_events.publisher.durability
+  qos_overrides./parameter_events.publisher.history
+  qos_overrides./parameter_events.publisher.reliability
+  scale_angular
+  scale_linear
+  use_sim_time
+/turtlesim:
+  background_b
+  background_g
+  background_r
+  qos_overrides./parameter_events.publisher.depth
+  qos_overrides./parameter_events.publisher.durability
+  qos_overrides./parameter_events.publisher.history
+  qos_overrides./parameter_events.publisher.reliability
+  use_sim_time
+```
+
+2. Obtener el valor de un parámetro específico.
+```bash
+ros2 param get /turtlesim background_g
+```
+Retorna el valor y tipo del parámetro.
+```
+Integer value is: 86
+```
+
+3. Establecer un nuevo valor a un parámetro. Por ejemplo, cambiar el color de fondo del `turtlesim`.
+```bash
+ros2 param set /turtlesim background_r 150
+```
+Retorna confirmación del cambio.
+```
+Set parameter successful
+```
+> **Nota**: El cambio es inmediato, el fondo del turtlesim cambiará de color al instante. Sin embargo, este cambio no persiste si reinicias el nodo.
+
+4. Ver todos los parámetros de un nodo con sus valores.
+```bash
+ros2 param dump /turtlesim
+```
+Retorna todos los parámetros en formato YAML.
+```
+/turtlesim:
+  ros__parameters:
+    background_b: 255
+    background_g: 86
+    background_r: 150
+    qos_overrides:
+      /parameter_events:
+        publisher:
+          depth: 1000
+          durability: volatile
+          history: keep_last
+          reliability: reliable
+    use_sim_time: false
+```
+
+5. Guardar los parámetros actuales en un archivo YAML.
+```bash
+ros2 param dump /turtlesim >> turtlesim_params.yaml
+```
+
+6. Cargar parámetros desde un archivo YAML al iniciar un nodo.
+```bash
+ros2 run turtlesim turtlesim_node --ros-args --params-file turtlesim_params.yaml
+```
+> Esto es útil para restaurar configuraciones personalizadas sin tener que establecer cada parámetro manualmente.
+
+7. Describir un parámetro (ver tipo, descripción y restricciones).
+```bash
+ros2 param describe /turtlesim background_r
+```
+Retorna información detallada.
+```
+Parameter name: background_r
+  Type: integer
+  Description: Red channel of the background color
+  Constraints:
+    Min value: 0
+    Max value: 255
+    Step: 0
+```
+
+<br>
+
 ## LAUNCH
+
+<div align="center">
+    <img src="/images/launch_diagram.svg" alt="Diagrama de Launch" width="70%" max-width="100%">
+</div>
+
 En ROS 2, los launch files (archivos de lanzamiento) son scripts que se utilizan para iniciar y configurar nodos y sistemas completos. Estos archivos permiten ejecutar varios nodos simultáneamente, establecer parámetros, definir remapeos de temas y configurar acciones o servicios, todo en un solo comando.
 
 ### Características principales:
@@ -940,7 +1083,7 @@ ros2 launch <nombre_paquete> <archivo_launch.py>
 ## Trabajando con ROS
 Instalación de dependencias para ROS: 
 ```bash
-ros2 apt install python3-colcon-common-extensions
+sudo apt install python3-colcon-common-extensions
 ```
 ### Creando un espacio de trabajo
 1. Creación del workspace.
@@ -1103,33 +1246,7 @@ def generate_launch_description():
     ],
     ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br>
 
 ---
 
@@ -1137,8 +1254,8 @@ def generate_launch_description():
 
 En ROS (Robot Operating System), el **URDF** (Unified Robot Description Format) es un formato de archivo XML utilizado para describir la geometría del robot, es decir, su estructura física, en términos de enlaces (**links**) y juntas (**joints**). Los enlaces representan las partes sólidas del robot (como **eslabones o piezas**), mientras que las juntas describen cómo estos enlaces están conectados y pueden moverse entre sí (como **articulaciones rotativas o prismáticas**).
 
-<div id="header" align="center">
-    <img src="/images/urdf.png" alt="Urdf" width="300px">
+<div align="center">
+    <img src="/images/urdf_diagram.svg" alt="Diagrama URDF" width="85%" max-width="100%">
 </div>
 
 El **Xacro** es una extensión de XML utilizada para escribir URDF de manera más eficiente y modular. Permite la reutilización de código y la parametrización de modelos, lo que simplifica la descripción y mantenimiento de robots complejos.
@@ -1161,36 +1278,7 @@ El **SDF** (Simulation Description Format) es un formato de archivo XML utilizad
 | **`<transmission>`**  | Define cómo el movimiento se transmite entre los joints y motores. | `<transmission name="transmission1"><actuator name="motor1"/><joint name="joint1"/></transmission>` |
 
 
-
-
-
 ---
-## REPASO DE MATRICES(Álgebra lineal)
-## REPASO ROBÓTICA(Quaterniones, Transformadas, ...)
-
-# Python es lento porque es interpretado
-
-
-Nodes
-
-Discovery
-
-Interfaces
-
-Topics
-
-Services
-
-Actions
-
-Parameters
-
-Introspection with command line tools
-
-Launch
-
-Client libraries
-
 
 ## [`👉 Instalación 🛠️`](./INSTALL.md)
 
@@ -1235,8 +1323,6 @@ Al compilar se crean 3 direcorios nuevos
 Realizar el paso 3 y 4 cada vez que se realice un cambio
 
 ## [`👉 Crea paquetes en ROS2`](./src/)
-
---
 
 
 
