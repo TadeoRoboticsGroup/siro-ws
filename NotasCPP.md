@@ -1,6 +1,12 @@
-# Guía Básica para ROS 2 Humble con Turtlesim y C++
+# C++ en ROS 2 - Guia de Referencia
 
-### ESPACIO DE TRABAJO 
+Guia de referencia para desarrollar nodos en ROS 2 con C++ usando la biblioteca `rclcpp`.
+
+### [`↩️ Volver al inicio`](./README.md)
+
+---
+
+### ESPACIO DE TRABAJO
 
 1. **Crear un Workspace**
 
@@ -442,3 +448,57 @@ Ejecuta el cliente de acción en un terminal separado:
 ```bash
 ros2 run my_turtle_actions move_turtle_action_client
 ```
+
+---
+
+## API de ROS 2 con rclcpp
+
+| Metodo                                | Tema      | Descripcion                                                  | Ejemplo de Uso                                                 |
+|---------------------------------------|-----------|--------------------------------------------------------------|---------------------------------------------------------------|
+| **Nodos**                             |           |                                                              |                                                               |
+| `rclcpp::init()`                     | Nodo      | Inicializa la biblioteca rclcpp.                            | `rclcpp::init(argc, argv);`                   |
+| `std::make_shared<Node>()`           | Nodo      | Crea un nodo en el sistema ROS 2.                           | `auto node = std::make_shared<rclcpp::Node>("nombre_del_nodo");` |
+| `get_logger()`                        | Nodo      | Obtiene el objeto logger para imprimir mensajes de registro. | `RCLCPP_INFO(node->get_logger(), "Mensaje de informacion");` |
+| `spin()`                              | Nodo      | Mantiene el nodo en ejecucion, procesando callbacks.        | `rclcpp::spin(node);`                         |
+| `shutdown()`                          | Nodo      | Apaga la biblioteca rclcpp y destruye el nodo.             | `rclcpp::shutdown();`                          |
+| **Topicos**                           |           |                                                              |                                                               |
+| `create_subscription()`               | Topico    | Crea un suscriptor para recibir mensajes de un topico.      | `auto subscription = node->create_subscription<std_msgs::msg::String>(`<br>`    "topic", callback_function);` |
+| `create_publisher()`                  | Topico    | Crea un publicador para enviar mensajes a un topico.        | `auto publisher = node->create_publisher<std_msgs::msg::String>("topic", 10);` |
+| `publish()`                           | Topico    | Publica un mensaje a un topico.                             | `std_msgs::msg::String msg;`<br>`msg.data = "Hola, ROS2";`<br>`publisher->publish(msg);` |
+| `destroy_subscription()`              | Topico    | Destruye un suscriptor especifico.                           | `node->destroy_subscription(subscription);`   |
+| `destroy_publisher()`                 | Topico    | Destruye un publicador especifico.                           | `node->destroy_publisher(publisher);`         |
+| **Servicios**                         |           |                                                              |                                                               |
+| `create_service()`                    | Servicio  | Crea un servicio para manejar solicitudes y respuestas.      | `auto service = node->create_service<std_srvs::srv::SetBool>(`<br>`    "service_name", callback_function);` |
+| `create_client()`                     | Servicio  | Crea un cliente para llamar a un servicio.                  | `auto client = node->create_client<std_srvs::srv::SetBool>("service_name");` |
+| `call_service()`                      | Servicio  | Llama a un servicio y espera su respuesta.                  | `auto future = client->async_send_request(request);` |
+| `destroy_service()`                   | Servicio  | Destruye un servicio especifico.                             | `node->destroy_service(service);`             |
+| **Acciones**                          |           |                                                              |                                                               |
+| `create_action_server()`              | Accion     | Crea un servidor de accion para gestionar acciones.          | `auto action_server = rclcpp_action::create_server<MyAction>(`<br>`    node,`<br>`    "action_name", execute_callback);` |
+| `create_action_client()`              | Accion     | Crea un cliente de accion para enviar metas a un servidor.   | `auto action_client = rclcpp_action::create_client<MyAction>(node, "action_name");` |
+| `send_goal()`                         | Accion     | Envia un objetivo al servidor de accion.                     | `auto future = action_client->async_send_goal(goal);` |
+| `wait_for_result()`                   | Accion     | Espera el resultado de una accion despues de enviar un objetivo. | `auto result_future = action_client->async_get_result(goal_handle);` |
+| `get_result()`                        | Accion     | Obtiene el resultado de la accion completada.               | `auto result = result_future.get();`          |
+| `destroy_action_server()`             | Accion     | Destruye un servidor de accion especifico.                  | `action_server->destroy();`                   |
+| `destroy_action_client()`             | Accion     | Destruye un cliente de accion especifico.                   | `action_client->destroy();`                   |
+
+---
+
+## POO con C++
+
+| Concepto                          | Descripcion                                                          | Ejemplo de Uso                                                 |
+|-----------------------------------|----------------------------------------------------------------------|---------------------------------------------------------------|
+| **Definicion de Clase**           | Define una nueva clase en C++.                                      | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`public:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`MiClase();`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`~MiClase();`<br>&nbsp;&nbsp;&nbsp;&nbsp;`};` |
+| **Constructor**                   | Metodo especial que se llama al crear una instancia de la clase.    | `MiClase::MiClase() { /* Constructor */ }`                   |
+| **Destructor**                    | Metodo especial que se llama al destruir una instancia de la clase. | `MiClase::~MiClase() { /* Destructor */ }`                    |
+| **Metodo**                        | Funcion definida dentro de una clase que opera en instancias.       | `void MiClase::miMetodo() { /* codigo */ }`                  |
+| **Herencia**                      | Permite que una clase herede atributos y metodos de otra clase.     | `class ClaseBase { };`<br>`class ClaseDerivada : public ClaseBase { };` |
+| **Sobrecarga de Metodos**        | Permite definir metodos con el mismo nombre pero diferentes parametros. | `void metodo(int a) { /* codigo */ }`<br>`void metodo(double b) { /* codigo */ }` |
+| **Polimorfismo**                 | Permite que un mismo metodo tenga diferentes implementaciones en diferentes clases. | `class Animal { public: virtual void hacerSonido(); };`<br>`class Perro : public Animal { public: void hacerSonido() override; };` |
+| **Encapsulamiento**               | Restringe el acceso a ciertos atributos o metodos dentro de la clase. | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`private:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`int valorPrivado;`<br>&nbsp;&nbsp;&nbsp;&nbsp;`public:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`int getValorPrivado() { return valorPrivado; }`<br>`};` |
+| **Atributos de Clase**           | Atributos que pertenecen a la clase en lugar de a instancias individuales. | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`static int atributoClase;`<br>`};` |
+| **Atributos de Instancia**       | Atributos que pertenecen a una instancia especifica de la clase.    | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`int valorInstancia;`<br>`};` |
+| **Metodo Estatico**              | Metodo que pertenece a la clase y no requiere acceso a la instancia. | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`static void metodoEstatico() { /* codigo */ }`<br>`};` |
+
+---
+
+### [`↩️ Volver al inicio`](./README.md)
