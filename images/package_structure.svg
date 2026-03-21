@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="400" rx="15" fill="#1a1a2e"/>
+  <text x="400" y="35" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold">Estructura de paquetes en ROS 2</text>
+
+  <!-- ament_cmake -->
+  <text x="200" y="65" text-anchor="middle" fill="#42A5F5" font-size="16" font-weight="bold">ament_cmake (C++)</text>
+
+  <rect x="50" y="80" width="300" height="290" rx="10" fill="#0D47A1" filter="url(#shadow)"/>
+
+  <text x="75" y="108" fill="#FFD54F" font-size="13" font-family="monospace">mi_paquete_cpp/</text>
+
+  <text x="95" y="132" fill="#90CAF9" font-size="12" font-family="monospace">CMakeLists.txt</text>
+  <text x="260" y="132" fill="#666" font-size="9">Compilacion</text>
+
+  <text x="95" y="155" fill="#90CAF9" font-size="12" font-family="monospace">package.xml</text>
+  <text x="260" y="155" fill="#666" font-size="9">Metadatos</text>
+
+  <rect x="85" y="166" width="240" height="1" fill="#1565C0"/>
+
+  <text x="95" y="185" fill="#66BB6A" font-size="12" font-family="monospace">src/</text>
+  <text x="260" y="185" fill="#666" font-size="9">Codigo .cpp</text>
+
+  <text x="115" y="205" fill="#A5D6A7" font-size="10" font-family="monospace">mi_nodo.cpp</text>
+
+  <text x="95" y="228" fill="#66BB6A" font-size="12" font-family="monospace">include/</text>
+  <text x="260" y="228" fill="#666" font-size="9">Headers .hpp</text>
+
+  <text x="95" y="253" fill="#66BB6A" font-size="12" font-family="monospace">launch/</text>
+  <text x="260" y="253" fill="#666" font-size="9">Archivos .py</text>
+
+  <text x="115" y="273" fill="#A5D6A7" font-size="10" font-family="monospace">mi_launch.py</text>
+
+  <text x="95" y="298" fill="#66BB6A" font-size="12" font-family="monospace">config/</text>
+  <text x="260" y="298" fill="#666" font-size="9">YAML params</text>
+
+  <text x="95" y="323" fill="#66BB6A" font-size="12" font-family="monospace">urdf/</text>
+  <text x="260" y="323" fill="#666" font-size="9">Modelos robot</text>
+
+  <text x="95" y="348" fill="#66BB6A" font-size="12" font-family="monospace">test/</text>
+  <text x="260" y="348" fill="#666" font-size="9">Pruebas</text>
+
+  <!-- ament_python -->
+  <text x="600" y="65" text-anchor="middle" fill="#66BB6A" font-size="16" font-weight="bold">ament_python (Python)</text>
+
+  <rect x="450" y="80" width="300" height="290" rx="10" fill="#1B5E20" filter="url(#shadow)"/>
+
+  <text x="475" y="108" fill="#FFD54F" font-size="13" font-family="monospace">mi_paquete_py/</text>
+
+  <text x="495" y="132" fill="#A5D6A7" font-size="12" font-family="monospace">setup.py</text>
+  <text x="660" y="132" fill="#666" font-size="9">Config paquete</text>
+
+  <text x="495" y="155" fill="#A5D6A7" font-size="12" font-family="monospace">setup.cfg</text>
+  <text x="660" y="155" fill="#666" font-size="9">Entry points</text>
+
+  <text x="495" y="178" fill="#A5D6A7" font-size="12" font-family="monospace">package.xml</text>
+  <text x="660" y="178" fill="#666" font-size="9">Metadatos</text>
+
+  <rect x="485" y="189" width="240" height="1" fill="#2E7D32"/>
+
+  <text x="495" y="210" fill="#90CAF9" font-size="12" font-family="monospace">mi_paquete_py/</text>
+  <text x="660" y="210" fill="#666" font-size="9">Modulo Python</text>
+
+  <text x="515" y="230" fill="#64B5F6" font-size="10" font-family="monospace">__init__.py</text>
+
+  <text x="515" y="250" fill="#64B5F6" font-size="10" font-family="monospace">mi_nodo.py</text>
+
+  <text x="495" y="275" fill="#90CAF9" font-size="12" font-family="monospace">launch/</text>
+  <text x="660" y="275" fill="#666" font-size="9">Archivos .py</text>
+
+  <text x="515" y="295" fill="#64B5F6" font-size="10" font-family="monospace">mi_launch.py</text>
+
+  <text x="495" y="320" fill="#90CAF9" font-size="12" font-family="monospace">config/</text>
+  <text x="660" y="320" fill="#666" font-size="9">YAML params</text>
+
+  <text x="495" y="345" fill="#90CAF9" font-size="12" font-family="monospace">test/</text>
+  <text x="660" y="345" fill="#666" font-size="9">Pruebas</text>
+
+  <!-- Footer -->
+  <text x="400" y="390" text-anchor="middle" fill="#888899" font-size="10">Crear: ros2 pkg create --build-type [ament_cmake|ament_python] nombre_paquete</text>
+</svg>

@@ -1,17 +1,22 @@
-# Instalación 🛠️
-Para instalar ROS 2 en tu sistema utilizando paquetes Debian o binarios, sigue las instrucciones que se describen a continuación. Estas instrucciones asumen que estás utilizando una distribución de Linux compatible (como Ubuntu) y que tienes privilegios de superusuario para instalar paquetes.
+# Instalacion de ROS 2 Humble
 
-- **Paquetes Debian**: Son paquetes preconstruidos específicos para Debian y sus derivados (como Ubuntu), se instalan usando el gestor de paquetes apt.
+Para instalar ROS 2 en tu sistema utilizando paquetes Debian. Estas instrucciones asumen Ubuntu 22.04 LTS o superior con privilegios de superusuario.
 
-- **Binarios**: Son archivos ejecutables preconstruidos, se instalan directamente sin usar un gestor de paquetes.
+<div align="center">
+    <img src="/images/install_flow_diagram.svg" alt="Flujo de instalacion" width="80%" max-width="100%">
+</div>
 
-## Instalación para paquetes Debian
+### [`↩️ Volver al inicio`](./README.md)
 
-> **Advertencia**: Instalar en Ubuntu 22.04 LST o versiones LTS superiores.
+---
 
-#### Configuración de fuentes
+## Instalacion con paquetes Debian
 
-1. Configuración regional compatible con UTF-8
+> **Requisito**: Ubuntu 22.04 LTS o versiones LTS superiores.
+
+### Configuracion de fuentes
+
+1. Configuracion regional compatible con UTF-8.
 ```bash
 locale  # check for UTF-8
 
@@ -22,75 +27,84 @@ export LANG=en_US.UTF-8
 
 locale  # verify settings
 ```
- 
- 2. Configurar el repositorio de Ubuntu Universe esté habilitado.
+
+2. Habilitar el repositorio Ubuntu Universe.
 ```bash
 sudo apt install software-properties-common
 sudo add-apt-repository universe
 ```
 
- 3. Agregue la clave GPG ROS2.
+3. Agregar la clave GPG de ROS 2.
 ```bash
 sudo apt update && sudo apt install curl -y
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 ```
 
- 4. Agregar el repositorio a la lista de fuentes.
+4. Agregar el repositorio a la lista de fuentes.
 ```bash
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 ```
 
-#### Instalar paquetes de ROS2
-5. Actualizar cache.
+### Instalar paquetes de ROS 2
+
+5. Actualizar cache y sistema.
 ```bash
-sudo apt update
+sudo apt update && sudo apt upgrade
 ```
 
-6. Actualizar el sistema.
-```bash
-sudo apt upgrade
-```
+6. Instalar ROS 2.
 
-7. Intalación de ROS2.
-
-> **Version Desktop**: Instalara todos los paquetes de ROS2, RVIZ2, ejemplos y tutoriales.
+> **Version Desktop** (recomendada): Incluye RVIZ2, ejemplos y tutoriales.
 ```bash
 sudo apt install ros-humble-desktop
 ```
-> **Version base**: Bibliotecas de comunicación, paquetes de mensajes, herramientas de línea de comandos.
+
+> **Version Base**: Solo bibliotecas de comunicacion, mensajes y herramientas CLI.
 ```bash
 sudo apt install ros-humble-ros-base
 ```
 
-8. Herramientas de desarrollo.
+7. Herramientas de desarrollo.
 ```bash
 sudo apt install ros-dev-tools
 ```
 
+8. Herramienta de compilacion de workspaces.
+```bash
+sudo apt install python3-colcon-common-extensions
+```
+
 ---
 
-### Probar instalación 
-1. Actualizamos cache.
-```bash
-sudo apt update
-```
+## Verificar la instalacion
 
-2. Actualizamos el sistema operativo.
-```bash
-sudo apt upgrade
-```
-
-3. Ahora en una terminal ejecute el nodo publicador de prueba. 
+1. Cargar el entorno de ROS 2.
 ```bash
 source /opt/ros/humble/setup.bash
+```
+
+2. En una terminal, ejecutar el nodo publicador de prueba.
+```bash
 ros2 run demo_nodes_cpp talker
 ```
 
-4. Ahora en una terminal ejecute el nodo suscriptor de prueba. 
+3. En otra terminal, ejecutar el nodo suscriptor de prueba.
 ```bash
 source /opt/ros/humble/setup.bash
 ros2 run demo_nodes_cpp listener
 ```
-<br>
 
-### [`↩️ atras`](./README.md) 
+> Si ves mensajes como `[INFO] [talker]: Publishing: 'Hello World: 1'` y `[INFO] [listener]: I heard: [Hello World: 1]`, la instalacion fue exitosa.
+
+---
+
+## Configuracion recomendada
+
+Cargar ROS 2 automaticamente al abrir cada terminal:
+```bash
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+```
+
+---
+
+### [`↩️ Volver al inicio`](./README.md)

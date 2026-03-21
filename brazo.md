@@ -1,10 +1,41 @@
-# SIRO ARM
+# SIRO ARM - Brazo Robotico con ROS 2
 
-##   Launch
+Proyecto de un brazo robotico controlado desde ROS 2 con comunicacion serial a Arduino.
+
+### [`↩️ Volver al inicio`](./README.md)
+
+---
+
+## Arquitectura del sistema
+
+```
+ROS 2 (PC)                          Arduino
+┌─────────────────────┐              ┌──────────────┐
+│  joint_state_pub_gui│──/joint_──>  │              │
+│  (deslizadores)     │   states     │  5 Servos    │
+│                     │              │  (pines 9-13)│
+│  robot_state_pub    │   Serial     │              │
+│  (URDF -> TF)       │──USB────────>│              │
+│                     │   9600 baud  │              │
+│  rviz2             │              │              │
+│  (visualizacion)    │              │              │
+│                     │              │              │
+│  serial_publisher   │              │              │
+│  (nodo puente)      │              │              │
+└─────────────────────┘              └──────────────┘
+```
+
+---
+
+## Launch file
+
+Lanza `robot_state_publisher`, `rviz2` y el nodo de comunicacion serial:
 
 ```python
 def generate_launch_description():
-    urdf_file = os.path.join(get_package_share_directory('siro_arm'), 'urdf', 'arm1.urdf')
+    urdf_file = os.path.join(
+        get_package_share_directory('siro_arm'), 'urdf', 'arm1.urdf'
+    )
 
     return LaunchDescription([
         Node(
@@ -19,19 +50,24 @@ def generate_launch_description():
             executable='rviz2',
             name='rviz2',
             output='screen',
-            arguments=['-d', os.path.join(get_package_share_directory('siro_arm'), 'config', 'siro_arm.rviz')],
+            arguments=['-d', os.path.join(
+                get_package_share_directory('siro_arm'), 'config', 'siro_arm.rviz'
+            )],
         ),
         Node(
             package='siro_arm',
-            executable='tu_nodo_serial_publisher',  # Cambia esto al nombre de tu archivo
+            executable='serial_publisher',
             name='serial_publisher',
             output='screen',
         )
     ])
-
 ```
 
-## NODE
+---
+
+## Nodo serial_publisher
+
+Suscribe a `/joint_states` y envia las posiciones de los joints por serial al Arduino:
 
 ```python
 import rclpy
@@ -48,13 +84,12 @@ class SerialPublisher(Node):
             self.joint_states_callback,
             10
         )
-        self.serial_connection = serial.Serial('/dev/ttyUSB0', 9600)  # Ajusta el puerto y la velocidad según sea necesario
+        self.serial_connection = serial.Serial('/dev/ttyUSB0', 9600)
 
     def joint_states_callback(self, msg):
-        # Extraer la información de los deslizadores
         positions = msg.position
-        command = ','.join(map(str, positions)) + '\n'  # Convierte a string y añade un salto de línea
-        self.serial_connection.write(command.encode())  # Envía los datos al Arduino
+        command = ','.join(map(str, positions)) + '\n'
+        self.serial_connection.write(command.encode())
 
 def main(args=None):
     rclpy.init(args=args)
@@ -65,33 +100,25 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
 ```
 
+> **Nota**: Ajustar el puerto serial (`/dev/ttyUSB0`) y velocidad (`9600`) segun la configuracion del Arduino.
 
+---
 
+## Codigo Arduino
 
-## ARDUINO
+Recibe las posiciones por serial y mueve 5 servomotores:
 
-```C
+```c
 #include <Servo.h>
 
-// Define los servos
-Servo servo1;
-Servo servo2;
-Servo servo3;
-Servo servo4;
-Servo servo5;
-
-// Variables para almacenar las posiciones de los servos
+Servo servo1, servo2, servo3, servo4, servo5;
 int pos1, pos2, pos3, pos4, pos5;
 
 void setup() {
-    // Inicia la comunicación serial
     Serial.begin(9600);
-
-    // Adjunta los servos a los pines correspondientes
-    servo1.attach(9);  // Ajusta según tu conexión
+    servo1.attach(9);
     servo2.attach(10);
     servo3.attach(11);
     servo4.attach(12);
@@ -99,25 +126,20 @@ void setup() {
 }
 
 void loop() {
-    // Verifica si hay datos disponibles en el puerto serial
     if (Serial.available() > 0) {
-        // Lee los datos de la línea serial
         String data = Serial.readStringUntil('\n');
-        
-        // Divide los datos en partes
-        int commaIndex1 = data.indexOf(',');
-        int commaIndex2 = data.indexOf(',', commaIndex1 + 1);
-        int commaIndex3 = data.indexOf(',', commaIndex2 + 1);
-        int commaIndex4 = data.indexOf(',', commaIndex3 + 1);
 
-        // Extrae las posiciones y convierte a enteros
-        pos1 = data.substring(0, commaIndex1).toInt();
-        pos2 = data.substring(commaIndex1 + 1, commaIndex2).toInt();
-        pos3 = data.substring(commaIndex2 + 1, commaIndex3).toInt();
-        pos4 = data.substring(commaIndex3 + 1, commaIndex4).toInt();
-        pos5 = data.substring(commaIndex4 + 1).toInt();
+        int c1 = data.indexOf(',');
+        int c2 = data.indexOf(',', c1 + 1);
+        int c3 = data.indexOf(',', c2 + 1);
+        int c4 = data.indexOf(',', c3 + 1);
 
-        // Mueve los servos a la nueva posición
+        pos1 = data.substring(0, c1).toInt();
+        pos2 = data.substring(c1 + 1, c2).toInt();
+        pos3 = data.substring(c2 + 1, c3).toInt();
+        pos4 = data.substring(c3 + 1, c4).toInt();
+        pos5 = data.substring(c4 + 1).toInt();
+
         servo1.write(pos1);
         servo2.write(pos2);
         servo3.write(pos3);
@@ -126,3 +148,20 @@ void loop() {
     }
 }
 ```
+
+---
+
+## Dependencias
+
+```bash
+# ROS 2
+sudo apt install ros-humble-joint-state-publisher-gui
+sudo apt install ros-humble-robot-state-publisher
+
+# Python
+pip install pyserial
+```
+
+---
+
+### [`↩️ Volver al inicio`](./README.md)

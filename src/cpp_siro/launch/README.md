@@ -1,83 +1,97 @@
-# Lanzaderas en ROS 2
+# Launch files en ROS 2
 
-Los lanzamientos en ROS 2 son archivos de configuración que permiten iniciar y coordinar múltiples nodos y acciones de manera simultánea. Son esenciales para configurar sistemas robóticos complejos de manera eficiente y automatizada.
+Los launch files permiten iniciar y coordinar multiples nodos con un solo comando. Se escriben en Python y definen que nodos lanzar, con que parametros y configuracion.
 
-## ¿Qué es un lanzamiento?
-
-Un lanzamiento es un archivo de configuración en ROS 2 que describe cómo iniciar y coordinar nodos y acciones relacionadas. Puedes pensar en un lanzamiento como un script que automatiza la configuración y ejecución de un sistema robótico.
-
-## Componentes de un archivo de lanzamiento
-
-Un archivo de lanzamiento generalmente consta de las siguientes partes:
-
-1. **Importaciones de módulos**: Al principio del archivo, se importan los módulos necesarios de ROS 2 para crear y configurar los lanzamientos.
-
-2. **Definición de la función `generate_launch_description`**: Esta función es el punto de entrada del archivo de lanzamiento y devuelve una descripción del lanzamiento. Aquí es donde se configuran todos los nodos y acciones que se iniciarán.
-
-3. **Configuración de nodos y acciones**: Dentro de la función `generate_launch_description`, se configuran todos los nodos y acciones que se desean iniciar durante el lanzamiento. Esto puede incluir nodos ROS, ejecutables de ROS 2, servicios, acciones, etc.
-
-4. **Retorno de la descripción del lanzamiento**: Finalmente, se retorna la descripción del lanzamiento al final de la función `generate_launch_description`.
-
-## Ejemplo: `siro_urdf_launch.py`
-
-A continuación, se muestra un ejemplo de un archivo de lanzamiento que inicia un URDF en Gazebo y otros nodos relacionados:
+### [`↩️ Volver al paquete`](../README.md) | [`↩️ Inicio`](../../../README.md)
 
 ---
 
-### Importaciones de módulos
+## Estructura de un launch file
+
+```python
+from launch import LaunchDescription
+from launch_ros.actions import Node
+
+def generate_launch_description():
+    return LaunchDescription([
+        Node(
+            package='nombre_paquete',
+            executable='nombre_ejecutable',
+            name='nombre_nodo',
+            output='screen',
+            parameters=[{'param1': valor1}]
+        ),
+        # Mas nodos...
+    ])
+```
+
+### Componentes principales
+
+| Componente | Funcion |
+|------------|---------|
+| `LaunchDescription` | Contenedor de todos los nodos y acciones a lanzar |
+| `Node` | Define un nodo con su paquete, ejecutable, nombre y parametros |
+| `generate_launch_description()` | Funcion requerida, punto de entrada del launch |
+
+---
+
+## Ejemplo: siro_urdf_launch.py
+
+Este launch inicia un URDF con `robot_state_publisher`, `joint_state_publisher_gui` y `rviz2`:
 
 ```python
 import launch
 import launch_ros.actions
 import os
-```
+from ament_index_python.packages import get_package_share_directory
 
-En este fragmento de código, importamos los módulos necesarios de ROS 2 y del sistema operativo para trabajar con lanzamientos y manipular archivos.
-
-### Definición de la función generate_launch_description
-
-```python
 def generate_launch_description():
-    # Contenido de la función
+    package_dir = get_package_share_directory('cpp_siro')
+    urdf_file = os.path.join(package_dir, 'urdf', 'siro_urdf.xml')
 
+    joint_state_publisher_node = launch_ros.actions.Node(
+        package="joint_state_publisher_gui",
+        executable="joint_state_publisher_gui",
+    )
+
+    robot_state_publisher_node = launch_ros.actions.Node(
+        package="robot_state_publisher",
+        executable="robot_state_publisher",
+        parameters=[{'robot_description': open(urdf_file).read()}],
+    )
+
+    rviz2_node = launch_ros.actions.Node(
+        package="rviz2",
+        executable="rviz2",
+        arguments=["-d", os.path.join(package_dir, 'rviz', 'default.rviz')],
+    )
+
+    return launch.LaunchDescription([
+        joint_state_publisher_node,
+        robot_state_publisher_node,
+        rviz2_node,
+    ])
 ```
-Aquí definimos la función generate_launch_description, que es el punto de entrada del archivo de lanzamiento y donde configuraremos nuestros nodos y acciones.
 
-### Configuración de nodos y acciones
-
-```python
-# Ruta al paquete y archivo URDF
-package_dir = '/home/jj/siro_ws/src/cpp_siro'
-urdf_file = os.path.join(package_dir, 'urdf', 'siro_urdf.xml')
-
+### Ejecutar
+```bash
+ros2 launch cpp_siro siro_urdf_launch.py
 ```
-En esta parte, especificamos la ruta al paquete y al archivo URDF que queremos cargar en Gazebo.
 
-```python
-# Creación de nodos
-joint_state_publisher_node = launch_ros.actions.Node(
-    package="joint_state_publisher_gui",
-    executable="joint_state_publisher_gui",
-)
+---
 
-rviz2_node = launch_ros.actions.Node(
-    package="rviz2",
-    executable="rviz2",
-    arguments=["-d", os.path.join(package_dir, 'rviz', 'default.rviz')],
-)
+## Parametros utiles de Node
 
-```
-Aquí creamos nodos para el publicador de estados conjuntos y RViz.
+| Parametro | Descripcion | Ejemplo |
+|-----------|-------------|---------|
+| `package` | Nombre del paquete | `'turtlesim'` |
+| `executable` | Nombre del ejecutable | `'turtlesim_node'` |
+| `name` | Nombre del nodo (override) | `'mi_turtle'` |
+| `output` | Salida del log | `'screen'` |
+| `parameters` | Lista de parametros | `[{'use_sim_time': True}]` |
+| `remappings` | Remapeo de topics | `[('/cmd_vel', '/turtle1/cmd_vel')]` |
+| `arguments` | Argumentos CLI | `['-d', 'config.rviz']` |
 
-### Retorno de la descripción del lanzamiento
+---
 
-```python
-return launch.LaunchDescription([
-    joint_state_publisher_node,
-    rviz2_node,
-])
-```
-Finalmente, retornamos la descripción del lanzamiento que contiene todos los nodos y acciones configurados.
-
-### [`atras`](./../)        [`siro_ws`](./../../../)
-
+### [`↩️ Volver al paquete`](../README.md) | [`↩️ Inicio`](../../../README.md)

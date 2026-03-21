@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FFD54F"/>
+    </marker>
+    <marker id="arrB" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#42A5F5"/>
+    </marker>
+    <marker id="arrG" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#66BB6A"/>
+    </marker>
+    <marker id="arrP" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#AB47BC"/>
+    </marker>
+    <marker id="arrO" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FF7043"/>
+    </marker>
+    <linearGradient id="n1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#42A5F5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1565C0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="n2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#66BB6A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E7D32;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" rx="15" fill="#1a1a2e"/>
+  <text x="400" y="35" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold">Arquitectura de Turtlesim</text>
+  <text x="400" y="55" text-anchor="middle" fill="#aaaacc" font-size="11">Nodos, Topics, Services y Actions del paquete turtlesim</text>
+
+  <!-- teleop_turtle node -->
+  <rect x="30" y="120" width="200" height="70" rx="12" fill="url(#n2)" filter="url(#shadow)"/>
+  <text x="130" y="150" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">/teleop_turtle</text>
+  <text x="130" y="170" text-anchor="middle" fill="#c8e6c9" font-size="10">turtle_teleop_key</text>
+
+  <!-- turtlesim node -->
+  <rect x="530" y="100" width="230" height="90" rx="12" fill="url(#n1)" filter="url(#shadow)"/>
+  <text x="645" y="130" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">/turtlesim</text>
+  <text x="645" y="150" text-anchor="middle" fill="#bbdefb" font-size="10">turtlesim_node</text>
+  <text x="645" y="170" text-anchor="middle" fill="#90CAF9" font-size="9">Ventana grafica con la tortuga</text>
+
+  <!-- TOPICS -->
+  <text x="400" y="85" text-anchor="middle" fill="#FFD54F" font-size="13" font-weight="bold">TOPICS</text>
+
+  <!-- /turtle1/cmd_vel topic -->
+  <rect x="290" y="100" width="170" height="32" rx="6" fill="#2d2d4e" stroke="#FFD54F" stroke-width="1.5"/>
+  <text x="375" y="121" text-anchor="middle" fill="#FFD54F" font-size="10">/turtle1/cmd_vel</text>
+  <line x1="230" y1="145" x2="286" y2="116" stroke="#FFD54F" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="460" y1="116" x2="526" y2="135" stroke="#FFD54F" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- /turtle1/pose topic -->
+  <rect x="290" y="145" width="170" height="32" rx="6" fill="#2d2d4e" stroke="#66BB6A" stroke-width="1.5"/>
+  <text x="375" y="166" text-anchor="middle" fill="#66BB6A" font-size="10">/turtle1/pose</text>
+  <line x1="530" y1="155" x2="464" y2="161" stroke="#66BB6A" stroke-width="2" marker-end="url(#arrG)"/>
+
+  <!-- /turtle1/color_sensor topic -->
+  <rect x="290" y="190" width="170" height="32" rx="6" fill="#2d2d4e" stroke="#42A5F5" stroke-width="1.5"/>
+  <text x="375" y="211" text-anchor="middle" fill="#42A5F5" font-size="10">/turtle1/color_sensor</text>
+  <line x1="530" y1="170" x2="464" y2="206" stroke="#42A5F5" stroke-width="2" marker-end="url(#arrB)"/>
+
+  <!-- SERVICES -->
+  <text x="400" y="265" text-anchor="middle" fill="#AB47BC" font-size="13" font-weight="bold">SERVICES</text>
+
+  <rect x="70" y="280" width="120" height="28" rx="5" fill="#4A148C"/>
+  <text x="130" y="299" text-anchor="middle" fill="#CE93D8" font-size="10">/clear</text>
+
+  <rect x="200" y="280" width="120" height="28" rx="5" fill="#4A148C"/>
+  <text x="260" y="299" text-anchor="middle" fill="#CE93D8" font-size="10">/spawn</text>
+
+  <rect x="330" y="280" width="120" height="28" rx="5" fill="#4A148C"/>
+  <text x="390" y="299" text-anchor="middle" fill="#CE93D8" font-size="10">/kill</text>
+
+  <rect x="460" y="280" width="120" height="28" rx="5" fill="#4A148C"/>
+  <text x="520" y="299" text-anchor="middle" fill="#CE93D8" font-size="10">/reset</text>
+
+  <rect x="590" y="280" width="170" height="28" rx="5" fill="#4A148C"/>
+  <text x="675" y="299" text-anchor="middle" fill="#CE93D8" font-size="10">/turtle1/set_pen</text>
+
+  <rect x="70" y="316" width="190" height="28" rx="5" fill="#4A148C"/>
+  <text x="165" y="335" text-anchor="middle" fill="#CE93D8" font-size="10">/turtle1/teleport_absolute</text>
+
+  <rect x="270" y="316" width="190" height="28" rx="5" fill="#4A148C"/>
+  <text x="365" y="335" text-anchor="middle" fill="#CE93D8" font-size="10">/turtle1/teleport_relative</text>
+
+  <!-- ACTIONS -->
+  <text x="400" y="380" text-anchor="middle" fill="#FF7043" font-size="13" font-weight="bold">ACTIONS</text>
+
+  <rect x="230" y="392" width="340" height="35" rx="8" fill="#BF360C" filter="url(#shadow)"/>
+  <text x="400" y="414" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">/turtle1/rotate_absolute</text>
+
+  <text x="225" y="415" fill="#FFAB91" font-size="9">Client:</text>
+  <rect x="100" y="400" width="120" height="22" rx="4" fill="#2E7D32"/>
+  <text x="160" y="415" text-anchor="middle" fill="#c8e6c9" font-size="9">/teleop_turtle</text>
+
+  <text x="575" y="415" fill="#FFAB91" font-size="9">Server:</text>
+  <rect x="610" y="400" width="120" height="22" rx="4" fill="#1565C0"/>
+  <text x="670" y="415" text-anchor="middle" fill="#bbdefb" font-size="9">/turtlesim</text>
+
+  <!-- Legend -->
+  <rect x="100" y="450" width="600" height="35" rx="8" fill="#2d2d4e"/>
+  <rect x="125" y="462" width="12" height="10" rx="2" fill="#FFD54F"/>
+  <text x="142" y="471" fill="#aaa" font-size="9">Topic (Pub/Sub)</text>
+  <rect x="260" y="462" width="12" height="10" rx="2" fill="#AB47BC"/>
+  <text x="277" y="471" fill="#aaa" font-size="9">Service (Req/Res)</text>
+  <rect x="400" y="462" width="12" height="10" rx="2" fill="#FF7043"/>
+  <text x="417" y="471" fill="#aaa" font-size="9">Action (Goal/Feedback/Result)</text>
+  <rect x="590" y="462" width="12" height="10" rx="2" fill="url(#n1)"/>
+  <text x="607" y="471" fill="#aaa" font-size="9">Nodo</text>
+</svg>

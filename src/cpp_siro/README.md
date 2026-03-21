@@ -1,113 +1,113 @@
-## PAQUETES CON ament_cmake(C++)
+# Paquete cpp_siro (ament_cmake)
 
-Creación de paquete con ament_cmake `cpp_siro`
+Paquete de ejemplo en C++ con nodos publicador y suscriptor.
 
-### `ros2 pkg create --build-type ament_cmake cpp_siro`
+### [`↩️ Volver a paquetes`](../README.md) | [`↩️ Inicio`](../../README.md)
 
-Se crea la carpeta del paquete `cpp_siro`
-Que es la que contiene los archivos de compilación del paquete y archivos de dependecias e información.
+---
 
-```
-    /cpp_siro
-```
-
-Ingresamos a la carpeta del paquete.
-
-### `cd cpp_siro`
-
-Aquí encontramos varios documentos y directorios.
+## Estructura del paquete
 
 ```
-    /include
-    /cpp_siro
-    CMakeList.txt
-    package.xml
+cpp_siro/
+  ├── CMakeLists.txt        # Configuracion de compilacion
+  ├── package.xml           # Metadatos y dependencias
+  ├── src/                  # Codigo fuente
+  │   ├── siro_node_publicador.cpp
+  │   └── siro_node_suscriptor.cpp
+  ├── include/              # Headers
+  ├── launch/               # Archivos de lanzamiento
+  │   └── siro_urdf_launch.py
+  ├── urdf/                 # Modelos del robot
+  └── config/               # Configuracion
 ```
 
+## Crear el paquete
 
-1. `package.xml`: Este archivo es esencial en cualquier paquete de ROS. Contiene información sobre el paquete, como su nombre, versión, descripción y dependencias. También especifica la licencia bajo la cual se distribuye el paquete, entre otras cosas. Aquí es donde se enumeran las dependencias de otros paquetes de ROS 2 que este paquete necesita para funcionar correctamente.
+```bash
+ros2 pkg create --build-type ament_cmake cpp_siro
+cd cpp_siro
+```
 
+---
 
-2. `CMakeLists.txt`: Este archivo es parte de la configuración de CMake y se utiliza para especificar cómo se debe compilar el paquete. En este archivo se definen las dependencias, se configuran las opciones de compilación y se establecen los objetivos de construcción para el paquete. `ament_cmake` proporciona macros específicas de ROS 2 para facilitar este proceso.
+## Configuracion de CMakeLists.txt
 
-Configurar la versión y el nombre del paquete.
-
+### Version y nombre del proyecto
 ```cmake
-    cmake_minimum_required(VERSION 3.5)
-    project(cpp_siro)
+cmake_minimum_required(VERSION 3.5)
+project(cpp_siro)
 ```
 
-Especificar la versión de C++
-
+### Version de C++
 ```cmake
-        # Default to C++14
-        if(NOT CMAKE_CXX_STANDARD)
-            set(CMAKE_CXX_STANDARD 14)
-        endif()
+if(NOT CMAKE_CXX_STANDARD)
+    set(CMAKE_CXX_STANDARD 14)
+endif()
 ```
 
-
-Especificar dependencias del paquete `ament_cmake`, `rclcpp` y `std_msgs`
-
-Cramos los nodos como ejecutables.
-
+### Dependencias
 ```cmake
-        # Agrega el ejecutable del nodo.
-        add_executable(siro_node_suscriptor src/siro_node_suscriptor.cpp)
-        add_executable(siro_node_publicador src/siro_node_publicador.cpp)
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
 ```
 
-Instalar las dependencias de los nodos.
-
+### Crear ejecutables
 ```cmake
-        # Especifica las dependencias para el ejecutable.
-        ament_target_dependencies(siro_node_suscriptor rclcpp std_msgs)
-        ament_target_dependencies(siro_node_publicador rclcpp std_msgs)
+add_executable(siro_node_suscriptor src/siro_node_suscriptor.cpp)
+add_executable(siro_node_publicador src/siro_node_publicador.cpp)
 ```
 
-Instalar los nodos.
-
+### Vincular dependencias a los ejecutables
 ```cmake
-        # Instala el ejecutable.
-        install(TARGETS
-            siro_node_suscriptor
-            siro_node_publicador
-            DESTINATION lib/${PROJECT_NAME}
-        )
+ament_target_dependencies(siro_node_suscriptor rclcpp std_msgs)
+ament_target_dependencies(siro_node_publicador rclcpp std_msgs)
 ```
 
-
-Creación de un directorio `/launch` para crear lanzaderas y compilacion.
-
+### Instalar ejecutables
 ```cmake
-        # Instala los scripts y los recursos.
-        install(DIRECTORY
-            launch
-            DESTINATION share/${PROJECT_NAME}
-        )
-
-
-        ament_package()
+install(TARGETS
+    siro_node_suscriptor
+    siro_node_publicador
+    DESTINATION lib/${PROJECT_NAME}
+)
 ```
 
+### Instalar directorio launch
+```cmake
+install(DIRECTORY
+    launch
+    DESTINATION share/${PROJECT_NAME}
+)
 
-3. `src/`: Este directorio suele contener los archivos fuente (tanto de C++ como de Python) necesarios para el funcionamiento del paquete. Aquí es donde se escriben las implementaciones de los nodos, bibliotecas y otros componentes del paquete.
+ament_package()
+```
 
+---
 
-4. `include/`: A veces, este directorio se utiliza para almacenar archivos de encabezado (headers) de C++ que son necesarios para compilar el paquete. Esto es común cuando se están construyendo bibliotecas que serán utilizadas por otros paquetes.
+## Compilar y ejecutar
 
+```bash
+cd ~/siro_ws
+colcon build --packages-select cpp_siro
+source install/setup.bash
+ros2 run cpp_siro siro_node_publicador
+```
 
-5. `launch/`: Este directorio se utiliza para almacenar archivos de lanzamiento (`launch files`). Los archivos de lanzamiento son archivos XML que describen cómo se deben iniciar los nodos y configuraciones relacionadas cuando se lanza el paquete. Estos archivos son útiles para configurar y ejecutar nodos de manera conveniente, especialmente cuando se trabaja con múltiples nodos y parámetros.
+---
 
+## Directorios del paquete
 
-6. `config/`: A veces, este directorio se utiliza para almacenar archivos de configuración, como archivos YAML, que contienen parámetros u otras configuraciones necesarias para el funcionamiento del paquete. Estos archivos pueden ser utilizados por nodos dentro del paquete para cargar configuraciones específicas durante la ejecución.
+| Directorio | Descripcion |
+|------------|-------------|
+| `src/` | Codigo fuente C++ (.cpp) de los nodos |
+| `include/` | Headers (.hpp) para bibliotecas compartidas |
+| `launch/` | Archivos de lanzamiento para iniciar multiples nodos |
+| `config/` | Archivos YAML con parametros de configuracion |
+| `urdf/` | Modelos URDF/Xacro del robot |
+| `test/` | Pruebas automatizadas |
 
+---
 
-7. `test/`: Opcionalmente, este directorio se puede utilizar para almacenar archivos de prueba, como scripts de prueba o casos de prueba automatizados, que ayudan a garantizar el correcto funcionamiento del paquete.
-
-
-Estos son los archivos y directorios comunes que se encuentran en un paquete creado con `ament_cmake` en ROS 2. Cada uno de ellos cumple un propósito específico en el proceso de desarrollo, compilación y ejecución del paquete dentro del entorno de ROS 2.
-
-
-
-### [`atras`](./../)        [`siro_ws`](./../../)
+### [`↩️ Volver a paquetes`](../README.md) | [`↩️ Inicio`](../../README.md)
